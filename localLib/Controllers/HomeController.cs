@@ -28,6 +28,13 @@ namespace localLib.Controllers
             return View();
         }
 
+        //nado kakto sdelat shob menialosi layout
+        [ViewLayout("_AdminLayout")]
+        public IActionResult Admin()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
