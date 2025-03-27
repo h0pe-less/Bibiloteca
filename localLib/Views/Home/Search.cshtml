@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewData["Title"] = "Search";
+}
+
+<link rel="stylesheet" href="~/css/searchstyle.css" />
+
+<div class="search-page">
+    <aside class="search-filters">
+        <h3>Filters</h3>
+        <div class="filter-section">
+            <h4>By Genre</h4>
+            <select class="form-control" id="genre-filter">
+                <option>All Genres</option>
+                <option>Fiction</option>
+                <option>Science</option>
+            </select>
+        </div>
+    </aside>
+
+    <main class="search-results">
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search by title, author, ISBN..." />
+            <button id="search-button" class="btn-primary">Search</button>
+        </div>
+
+        <div class="books-grid" id="books-container">
+            @* @foreach (var book in Model.Books)
+            {
+                <div class="book-card">
+                    <img src="@book.CoverUrl" alt="@book.Title" />
+                    <h5>@book.Title</h5>
+                    <p>@book.Author</p>
+                    <span class="badge">@book.Genre</span>
+                </div>
+            } *@
+        </div>
+
+        <div class="pagination">
+            <button class="page-btn">Previous</button>
+            <span>Page 1 of 5</span>
+            <button class="page-btn">Next</button>
+        </div>
+    </main>
+</div>

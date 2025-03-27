@@ -1,0 +1,158 @@
+﻿.welcome-banner {
+    position: relative;
+    margin: 0 auto;
+    z-index: 1;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 1600px;
+    height: 600px;
+    overflow: hidden;
+}
+.inside-welcome {
+    position: absolute;
+    bottom: 25%;
+    width: 1070px;
+    height: 240px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    gap: 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.inside-welcome h3 {
+    color: gray;
+    font-family: 'Open Sans', sans-serif;
+}
+.inside-welcome h2 {
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+}
+.inside-welcome a {
+        margin-top: 1rem;
+        width: 180px;
+        height: 60px;
+        background-color: #6ecdf3;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+}
+.inside-welcome a::before {
+    content: "Caută cărți";
+    color: black;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+
+}
+.icon {
+    font-size: 20px;
+}
+.listing-wrapper {
+    position: relative;
+    top: 2rem;
+    margin: 0 auto;
+    z-index: 1;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 1600px;
+    height: 600px;
+    overflow: hidden;
+}
+.widget-header h2 {
+    font-family: 'Open Sans' ,sans-serif;
+    font-size: 32px;
+}
+.view-content {
+    margin: 0;
+}
+.articles-container {
+    display: flex;
+    gap: 2%;
+    padding-left: 0;
+    list-style-type: none;
+    margin: 0;
+}
+.article {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+}
+.article img {
+    margin-top: 1rem;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    display: block;
+}
+.article h2, h3 {
+    margin-top: 1rem;
+    font-family: 'Open Sans', sans-serif;
+    text-align: left;
+    color: #2F2F2F;
+}
+.article h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.article h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #2F2F2F;
+}
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.stat-block {
+    background: #D3D3D3;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    flex: 1;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.stat-block:hover {
+    transform: translateY(-5px);
+}
+
+.stat-header {
+    color: #495057;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.stat-counter {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    text-align: center;
+}
+.article-stats {
+    position: relative;
+    top: 1.5rem;
+    width: 1050px;
+    margin: 0 auto;
+}
+.article-stats-header {
+    position: relative;
+    text-align: center;
+}
+.article-stats-header h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2rem;
+}
