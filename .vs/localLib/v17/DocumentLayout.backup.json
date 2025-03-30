@@ -1,0 +1,303 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Repos\\Bibiloteca\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|d:\\repos\\bibiloteca\\locallib\\wwwroot\\css\\searchstyle.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|solutionrelative:locallib\\wwwroot\\css\\searchstyle.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|d:\\repos\\bibiloteca\\locallib\\views\\home\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|solutionrelative:locallib\\views\\home\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|d:\\repos\\bibiloteca\\locallib\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|solutionrelative:locallib\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|d:\\repos\\bibiloteca\\locallib\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|solutionrelative:locallib\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|d:\\repos\\bibiloteca\\locallib\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|solutionrelative:locallib\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|d:\\repos\\bibiloteca\\locallib\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|solutionrelative:locallib\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|d:\\repos\\bibiloteca\\locallib\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|solutionrelative:locallib\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|d:\\repos\\bibiloteca\\locallib\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|solutionrelative:locallib\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|d:\\repos\\bibiloteca\\locallib\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|solutionrelative:locallib\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|d:\\repos\\bibiloteca\\locallib\\wwwroot\\css\\libmeanmenu.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|solutionrelative:locallib\\wwwroot\\css\\libmeanmenu.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|d:\\repos\\bibiloteca\\locallib\\wwwroot\\css\\overridets.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|solutionrelative:locallib\\wwwroot\\css\\overridets.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|d:\\repos\\bibiloteca\\locallib\\wwwroot\\css\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|solutionrelative:locallib\\wwwroot\\css\\styles.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|d:\\repos\\bibiloteca\\locallib\\wwwroot\\images\\librarylanding.jpg||{58961B49-13E0-48C0-9258-13CBC4D40279}",
+      "RelativeMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|solutionrelative:locallib\\wwwroot\\images\\librarylanding.jpg||{58961B49-13E0-48C0-9258-13CBC4D40279}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|d:\\repos\\bibiloteca\\locallib\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|solutionrelative:locallib\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|d:\\repos\\bibiloteca\\locallib\\locallib.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|solutionrelative:locallib\\locallib.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|d:\\repos\\bibiloteca\\locallib\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|solutionrelative:locallib\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|d:\\repos\\bibiloteca\\locallib\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FE93DC09-1874-46C2-B507-6B489037D362}|localLib\\localLib.csproj|solutionrelative:locallib\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "overridets.css",
+              "DocumentMoniker": "D:\\Repos\\Bibiloteca\\localLib\\wwwroot\\css\\overridets.css",
+              "RelativeDocumentMoniker": "localLib\\wwwroot\\css\\overridets.css",
+              "ToolTip": "D:\\Repos\\Bibiloteca\\localLib\\wwwroot\\css\\overridets.css",
+              "RelativeToolTip": "localLib\\wwwroot\\css\\overridets.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-03-29T12:34:48.083Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "styles.css",
+              "DocumentMoniker": "D:\\Repos\\Bibiloteca\\localLib\\wwwroot\\css\\styles.css",
+              "RelativeDocumentMoniker": "localLib\\wwwroot\\css\\styles.css",
+              "ToolTip": "D:\\Repos\\Bibiloteca\\localLib\\wwwroot\\css\\styles.css",
+              "RelativeToolTip": "localLib\\wwwroot\\css\\styles.css",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADoAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-03-29T12:34:48.086Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "libmeanmenu.css",
+              "DocumentMoniker": "D:\\Repos\\Bibiloteca\\localLib\\wwwroot\\css\\libmeanmenu.css",
+              "RelativeDocumentMoniker": "localLib\\wwwroot\\css\\libmeanmenu.css",
+              "ToolTip": "D:\\Repos\\Bibiloteca\\localLib\\wwwroot\\css\\libmeanmenu.css",
+              "RelativeToolTip": "localLib\\wwwroot\\css\\libmeanmenu.css",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAAAKIAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-03-29T12:34:48.087Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "site.css",
+              "DocumentMoniker": "D:\\Repos\\Bibiloteca\\localLib\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "localLib\\wwwroot\\css\\site.css",
+              "ToolTip": "D:\\Repos\\Bibiloteca\\localLib\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "localLib\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-03-29T12:34:48.089Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "site.js",
+              "DocumentMoniker": "D:\\Repos\\Bibiloteca\\localLib\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "localLib\\wwwroot\\js\\site.js",
+              "ToolTip": "D:\\Repos\\Bibiloteca\\localLib\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "localLib\\wwwroot\\js\\site.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-03-29T12:34:48.09Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ErrorViewModel.cs",
+              "DocumentMoniker": "D:\\Repos\\Bibiloteca\\localLib\\Models\\ErrorViewModel.cs",
+              "RelativeDocumentMoniker": "localLib\\Models\\ErrorViewModel.cs",
+              "ToolTip": "D:\\Repos\\Bibiloteca\\localLib\\Models\\ErrorViewModel.cs",
+              "RelativeToolTip": "localLib\\Models\\ErrorViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T12:34:48.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "searchstyle.css",
+              "DocumentMoniker": "D:\\Repos\\Bibiloteca\\localLib\\wwwroot\\css\\searchstyle.css",
+              "RelativeDocumentMoniker": "localLib\\wwwroot\\css\\searchstyle.css",
+              "ToolTip": "D:\\Repos\\Bibiloteca\\localLib\\wwwroot\\css\\searchstyle.css*",
+              "RelativeToolTip": "localLib\\wwwroot\\css\\searchstyle.css*",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAkwDgAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-03-29T12:34:48.094Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Search.cshtml",
+              "DocumentMoniker": "D:\\Repos\\Bibiloteca\\localLib\\Views\\Home\\Search.cshtml",
+              "RelativeDocumentMoniker": "localLib\\Views\\Home\\Search.cshtml",
+              "ToolTip": "D:\\Repos\\Bibiloteca\\localLib\\Views\\Home\\Search.cshtml",
+              "RelativeToolTip": "localLib\\Views\\Home\\Search.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-29T12:34:48.098Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Repos\\Bibiloteca\\localLib\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "localLib\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Repos\\Bibiloteca\\localLib\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "localLib\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwDEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-29T12:34:48.1Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Repos\\Bibiloteca\\localLib\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "localLib\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Repos\\Bibiloteca\\localLib\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "localLib\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAWwB8AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T12:34:48.102Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "D:\\Repos\\Bibiloteca\\localLib\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "localLib\\Views\\_ViewImports.cshtml",
+              "ToolTip": "D:\\Repos\\Bibiloteca\\localLib\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "localLib\\Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-29T12:34:47.765Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Book.cs",
+              "DocumentMoniker": "D:\\Repos\\Bibiloteca\\localLib\\Models\\Book.cs",
+              "RelativeDocumentMoniker": "localLib\\Models\\Book.cs",
+              "ToolTip": "D:\\Repos\\Bibiloteca\\localLib\\Models\\Book.cs",
+              "RelativeToolTip": "localLib\\Models\\Book.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAwwBMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T12:34:48.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "D:\\Repos\\Bibiloteca\\localLib\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "localLib\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "D:\\Repos\\Bibiloteca\\localLib\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "localLib\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-29T12:34:48.105Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "LibraryLanding.jpg",
+              "DocumentMoniker": "D:\\Repos\\Bibiloteca\\localLib\\wwwroot\\images\\LibraryLanding.jpg",
+              "RelativeDocumentMoniker": "localLib\\wwwroot\\images\\LibraryLanding.jpg",
+              "ToolTip": "D:\\Repos\\Bibiloteca\\localLib\\wwwroot\\images\\LibraryLanding.jpg",
+              "RelativeToolTip": "localLib\\wwwroot\\images\\LibraryLanding.jpg",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-03-29T12:34:48.107Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "localLib.csproj",
+              "DocumentMoniker": "D:\\Repos\\Bibiloteca\\localLib\\localLib.csproj",
+              "RelativeDocumentMoniker": "localLib\\localLib.csproj",
+              "ToolTip": "D:\\Repos\\Bibiloteca\\localLib\\localLib.csproj",
+              "RelativeToolTip": "localLib\\localLib.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-03-29T12:34:48.113Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Repos\\Bibiloteca\\localLib\\appsettings.json",
+              "RelativeDocumentMoniker": "localLib\\appsettings.json",
+              "ToolTip": "D:\\Repos\\Bibiloteca\\localLib\\appsettings.json",
+              "RelativeToolTip": "localLib\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-29T12:34:48.377Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Repos\\Bibiloteca\\localLib\\Program.cs",
+              "RelativeDocumentMoniker": "localLib\\Program.cs",
+              "ToolTip": "D:\\Repos\\Bibiloteca\\localLib\\Program.cs",
+              "RelativeToolTip": "localLib\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T12:34:48.379Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -29,7 +29,7 @@ namespace localLib.Controllers
         }
 
         //nado kakto sdelat shob menialosi layout
-        [ViewLayout("_AdminLayout")]
+        //[ViewLayout("_AdminLayout")]
         public IActionResult Admin()
         {
             return View();
