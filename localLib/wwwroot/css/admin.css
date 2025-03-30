@@ -1,0 +1,45 @@
+﻿/* wwwroot/css/admin.css */
+
+/* Sidebar styles */
+#sidebar {
+  width: 250px;
+  min-height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+#content {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Navigation styles */
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.components li {
+  padding: 8px 15px;
+}
+
+#sidebar .nav-link {
+  color: rgba(255,255,255,0.8);
+  transition: all 0.3s;
+  padding: 10px 15px;
+}
+
+#sidebar .nav-link:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+  transform: translateX(5px);
+}
+
+/* Icons */
+.bi {
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
