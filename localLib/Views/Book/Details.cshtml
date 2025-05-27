@@ -1,0 +1,65 @@
+@model localLib.Models.Book
+
+@{
+    ViewData["Title"] = "Book Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Book Details</h1>
+
+<div>
+    <div class="row">
+        <div class="col-md-4">
+            @if (!string.IsNullOrEmpty(Model.CoverImageUrl))
+            {
+                <img src="@Model.CoverImageUrl" class="img-fluid mb-3" />
+            }
+        </div>
+        <div class="col-md-8">
+            <dl class="row">
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Title)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Title)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Author)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Author)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ISBN)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.ISBN)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Genre)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Genre.Name)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Publisher)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Publisher.Name)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.PublicationYear)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.PublicationYear)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.PageCount)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.PageCount)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Description)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Price)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Price)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.AvailableCopies)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.AvailableCopies)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DateAdded)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.DateAdded)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ShelfLocation)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.ShelfLocation)</dd>
+
+                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.IsFeatured)</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.IsFeatured)</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

@@ -1,3 +1,6 @@
+using localLib.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace localLib
 {
     public class Program
@@ -10,7 +13,16 @@ namespace localLib
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddDbContext<BibliotecaContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("BibliotecaConnection")));
+
             var app = builder.Build();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<BibliotecaContext>();
+                DbInitializer.Initialize(context);
+            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

@@ -1,0 +1,221 @@
+﻿@model localLib.Models.Carte
+
+@{
+    ViewData["Title"] = "Create Book";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Adaugă Carte Nouă</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-controller="Book" asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="card mb-3">
+                <div class="card-header">Informații de bază</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="Titlu" class="control-label"></label>
+                        <input asp-for="Titlu" class="form-control" />
+                        <span asp-validation-for="Titlu" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TitluInfo" class="control-label"></label>
+                        <textarea asp-for="TitluInfo" class="form-control" rows="2"></textarea>
+                        <span asp-validation-for="TitluInfo" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="ISBN" class="control-label"></label>
+                                <input asp-for="ISBN" class="form-control" />
+                                <span asp-validation-for="ISBN" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Autori</label>
+                                <div class="input-group">
+                                    <select id="authorComboBox" class="form-control" asp-items="ViewBag.NumePrenume">
+                                        <option value="">-- Selectați Autor --</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button type="button" id="addAuthorBtn" class="btn btn-outline-primary">Adaugă</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="selectedAuthorsContainer" class="d-flex flex-wrap gap-2 mt-2">
+                            </div>
+                            <input type="hidden" id="selectedAuthorIds" name="SelectedAuthorIds" />
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Categorii</label>
+                                <div class="input-group">
+                                    <select id="categoryComboBox" class="form-control" asp-items="ViewBag.Denumire">
+                                        <option value="">-- Selectați Categorie --</option>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button type="button" id="addCategoryBtn" class="btn btn-outline-primary">Adaugă</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="selectedCategoriesContainer" class="d-flex flex-wrap gap-2 mt-2">
+                            </div>
+                            <input type="hidden" id="selectedCategoryIds" name="SelectedCategoryIds" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Cota" class="control-label"></label>
+                        <input asp-for="Cota" class="form-control" />
+                        <span asp-validation-for="Cota" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-header">Detalii publicare</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="EdituraId" class="control-label">Editura</label>
+                        <select asp-for="EdituraId" class="form-control" asp-items="ViewBag.EdituraId">
+                            <option value="">-- Selectați Editura --</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Editie" class="control-label"></label>
+                                <input asp-for="Editie" class="form-control" />
+                                <span asp-validation-for="Editie" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="DataPublicarii" class="control-label"></label>
+                                <input asp-for="DataPublicarii" class="form-control" type="date" />
+                                <span asp-validation-for="DataPublicarii" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LoculPublicarii" class="control-label"></label>
+                        <input asp-for="LoculPublicarii" class="form-control" />
+                        <span asp-validation-for="LoculPublicarii" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-header">Clasificare</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="ZonaColectieId" class="control-label">Zonă Colecție</label>
+                                <select asp-for="ZonaColectieId" class="form-control" asp-items="ViewBag.ZonaColectieId">
+                                    <option value="">-- Selectați Zona --</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="LimbaId" class="control-label">Limba</label>
+                                <select asp-for="LimbaId" class="form-control" asp-items="ViewBag.LimbaId">
+                                    <option value="">-- Selectați Limba --</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TaraId" class="control-label">Țara</label>
+                        <select asp-for="TaraId" class="form-control" asp-items="ViewBag.TaraId">
+                            <option value="">-- Selectați Țara --</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-header">Informații suplimentare</div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label asp-for="MentiuniResponsabilitate" class="control-label"></label>
+                        <textarea asp-for="MentiuniResponsabilitate" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="MentiuniResponsabilitate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Bibliografie" class="control-label"></label>
+                        <textarea asp-for="Bibliografie" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Bibliografie" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Descriere" class="control-label"></label>
+                        <textarea asp-for="Descriere" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Descriere" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Descriere" class="control-label"></label>
+                        <textarea asp-for="Descriere" class="form-control" rows="1"></textarea>
+                        <span asp-validation-for="Descriere" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Paginatie" class="control-label"></label>
+                        <textarea asp-for="Paginatie" class="form-control" rows="1"></textarea>
+                        <span asp-validation-for="Paginatie" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Ilustratii" class="control-label"></label>
+                        <textarea asp-for="Ilustratii" class="form-control" rows="1"></textarea>
+                        <span asp-validation-for="Ilustratii" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-header">Detalii fizice</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="NrPagini" class="control-label"></label>
+                                <input asp-for="NrPagini" class="form-control" type="number" min="1" />
+                                <span asp-validation-for="NrPagini" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Pret" class="control-label"></label>
+                                <input asp-for="Pret" class="form-control" type="number" step="0.01" min="0" />
+                                <span asp-validation-for="Pret" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="NumarInventar" class="control-label"></label>
+                                <input asp-for="NumarInventar" class="form-control" type="number" min="1" />
+                                <span asp-validation-for="NumarInventar" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CopertaURL" class="control-label">URL Copertă</label>
+                        <input asp-for="CopertaURL" class="form-control" type="url" />
+                        <span asp-validation-for="CopertaURL" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Adaugă" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Anulează</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

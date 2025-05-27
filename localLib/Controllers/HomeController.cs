@@ -1,4 +1,5 @@
 ﻿using localLib.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -28,8 +29,8 @@ namespace localLib.Controllers
             return View();
         }
 
-        //nado kakto sdelat shob menialosi layout
-        [ViewLayout("_AdminLayout")]
+        //[Authorize (Roles = "Admin")] 
+        [Route("Admin")]
         public IActionResult Admin()
         {
             return View();

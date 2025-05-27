@@ -47,3 +47,21 @@ body {
 #sidebar li {
   margin: 5px 15px;
 }
+
+.selected-author {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: black;
+}
+.selected-category {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: black;
+}
+
+.btn-close {
+    font-size: 0.7rem;
+    padding: 0.25rem;
+}

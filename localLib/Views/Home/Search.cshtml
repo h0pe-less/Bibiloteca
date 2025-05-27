@@ -5,41 +5,91 @@
 
 <link rel="stylesheet" href="~/css/searchstyle.css" />
 
-<div class="search-page">
-    <aside class="search-filters">
-        <h3>Filters</h3>
-        <div class="filter-section">
-            <h4>By Genre</h4>
-            <select class="form-control" id="genre-filter">
-                <option>All Genres</option>
-                <option>Fiction</option>
-                <option>Science</option>
+<div class="main-container">
+    <div class="search-bar">
+        <div class="search-container">
+            <input type="text" placeholder="Search for books...">
+            <button class="search-button">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149852.png" alt="Search">
+            </button>
+        </div>
+    </div>
+
+    <div class="search-tooltip">
+        <h1 onclick="clearFilters()">Clear filters</h1>
+        <div class="pagination-info">Showing 10 of 100</div>
+        <div class="sort-options">
+            <span>Sort by:</span>
+            <select>
+                <option>Relevance</option>
+                <option>Newest</option>
+                <option>Oldest</option>
+                <option>Title A-Z</option>
+                <option>Title Z-A</option>
             </select>
         </div>
-    </aside>
+    </div>
 
-    <main class="search-results">
-        <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Search by title, author, ISBN..." />
-            <button id="search-button" class="btn-primary">Search</button>
-        </div>
-
-        <div class="books-grid" id="books-container">
-            @* @foreach (var book in Model.Books)
-            {
-                <div class="book-card">
-                    <img src="@book.CoverUrl" alt="@book.Title" />
-                    <h5>@book.Title</h5>
-                    <p>@book.Author</p>
-                    <span class="badge">@book.Genre</span>
+    <div class="search-results">
+        <div class="book-grid">
+            <!--book-card cherez foreach kakoi to ebnuti-->
+            <div class="book-card">
+                <div class="book-cover">
+                    <img src="/images/libanimation.jpg" alt="Book cover">
                 </div>
-            } *@
+                <div class="book-details">
+                    <h3 class="book-title">Hello here is my title</h3>
+                    <p class="book-authors">Authors: Donald Trump, Stanislav Caragheaur</p>
+                    <p class="book-summary">Summary: hehehe hohoho</p>
+                    <p class="book-publisher">Publisher: McGraw-Hill, New York</p>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-cover">
+                    <img src="/images/libanimation.jpg" alt="Book cover">
+                </div>
+                <div class="book-details">
+                    <h3 class="book-title">Hello here is my title</h3>
+                    <p class="book-authors">Authors: Donald Trump, Stanislav Caragheaur</p>
+                    <p class="book-summary">Summary: hehehe hohoho</p>
+                    <p class="book-publisher">Publisher: McGraw-Hill, New York</p>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="book-cover">
+                    <img src="/images/libanimation.jpg" alt="Book cover">
+                </div>
+                <div class="book-details">
+                    <h3 class="book-title">Hello here is my title</h3>
+                    <p class="book-authors">Authors: Donald Trump, Stanislav Caragheaur</p>
+                    <p class="book-summary">Summary: hehehe hohoho</p>
+                    <p class="book-publisher">Publisher: McGraw-Hill, New York</p>
+                </div>
+            </div>
         </div>
 
-        <div class="pagination">
-            <button class="page-btn">Previous</button>
-            <span>Page 1 of 5</span>
-            <button class="page-btn">Next</button>
+        <div class="search-filters">
+            <div class="filter-section">
+                <h3>Filter by Type</h3>
+                <label><input type="checkbox"> eBook</label><br>
+                <label><input type="checkbox"> Print Book</label><br>
+                <label><input type="checkbox"> Article</label>
+            </div>
+
+            <div class="filter-section">
+                <h3>Filter by Language</h3>
+                <label><input type="checkbox"> Swedish</label><br>
+                <label><input type="checkbox"> Slovenian</label><br>
+                <label><input type="checkbox"> English</label>
+            </div>
+
+            <div class="filter-section">
+                <h3>Publication Year</h3>
+                <input type="range" min="2000" max="2023">
+            </div>
         </div>
-    </main>
+    </div>
+    <div class="pages">
+        <!-- stranichki cherez c# vivesti kak na worldcat -->
+    </div>
 </div>

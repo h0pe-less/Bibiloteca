@@ -1,0 +1,118 @@
+﻿@model IEnumerable<localLib.Models.Carte>
+
+@{
+    ViewData["Title"] = "Books";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Listă Cărți</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary mb-2">Adaugă carte nouă</a>
+</p>
+
+<div style="overflow-x: auto;">
+    <table class="table table-striped table-bordered table-sm text-nowrap">
+        <thead class="thead-dark">
+            <tr>
+                <th style="min-width: 60px;">ID</th>
+                <th style="min-width: 100px;">ISBN</th>
+                <th style="min-width: 100px;">ISSN</th>
+                <th style="min-width: 80px;">Cota</th>
+                <th style="min-width: 150px;">Titlu</th>
+                <th style="min-width: 120px;">Info Titlu</th>
+                <th style="min-width: 150px;">Responsabilitate</th>
+                <th style="min-width: 80px;">Ediție</th>
+                <th style="min-width: 100px;">Editura</th>
+                <th style="min-width: 110px;">Data Publicării</th>
+                <th style="min-width: 120px;">Loc Publicare</th>
+                <th style="min-width: 120px;">Bibliografie</th>
+                <th style="min-width: 150px;">Descriere</th>
+                <th style="min-width: 80px;">Nr Pagini</th>
+                <th style="min-width: 80px;">Preț</th>
+                <th style="min-width: 120px;">Zonă Colectie</th>
+                <th style="min-width: 100px;">Limba</th>
+                <th style="min-width: 100px;">Țara</th>
+                <th style="min-width: 100px;">Nr Inventar</th>
+                <th style="min-width: 60px;">Copertă</th>
+                <th style="min-width: 150px;">Autori</th>
+                <th style="min-width: 150px;">Categorii</th>
+                <th style="min-width: 150px;">Paginatie</th>
+                <th style="min-width: 150px;">Ilustratii</th>
+                <th style="min-width: 150px;">Acțiuni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.CarteId</td>
+                        <td>@item.ISBN</td>
+                        <td>@item.ISSN</td>
+                        <td>@item.Cota</td>
+                        <td>@item.Titlu</td>
+                        <td>@item.TitluInfo</td>
+                        <td>@item.MentiuniResponsabilitate</td>
+                        <td>@item.Editie</td>
+                        <td>@item.Editura?.Denumire</td>
+                        <td>@item.DataPublicarii.ToShortDateString()</td>
+                        <td>@item.LoculPublicarii</td>
+                        <td>@item.Bibliografie</td>
+                        <td>@item.Descriere</td>
+                        <td>@item.NrPagini</td>
+                        <td>@item.Pret</td>
+                        <td>@item.ZonaColectie?.DenumireZona</td>
+                        <td>@item.Limba?.DenumireLimba</td>
+                        <td>@item.Tara?.DenumireTara</td>
+                        <td>@item.NumarInventar</td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.CopertaURL))
+                            {
+                                <img src="@item.CopertaURL" alt="Copertă" style="height:40px;" />
+                            }
+                            else
+                            {
+                                <span>-</span>
+                            }
+                        </td>
+                        <td>
+                            @if (item.Autori != null && item.Autori.Any())
+                            {
+                                @string.Join(", ", item.Autori.Where(a => a.Autor != null).Select(a => a.Autor.NumePrenume))
+                            }
+                            else
+                            {
+                                <span>-</span>
+                            }
+                        </td>
+                        <td>
+                            @if (item.CarteCategorii != null && item.CarteCategorii.Any())
+                            {
+                                @string.Join(", ", item.CarteCategorii.Where(c => c.Categorie != null).Select(c => c.Categorie.Denumire))
+                            }
+                            else
+                            {
+                                <span>-</span>
+                            }
+                        </td>
+                        <td>@item.Paginatie</td>
+                        <td>@item.Ilustratii</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.CarteId" class="btn btn-sm btn-warning">Editare</a>
+                            <a asp-action="Details" asp-route-id="@item.CarteId" class="btn btn-sm btn-info">Detalii</a>
+                            <a asp-action="Delete" asp-route-id="@item.CarteId" class="btn btn-sm btn-danger">Ștergere</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="23" class="text-center">Nu există cărți înregistrate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
