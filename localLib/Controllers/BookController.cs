@@ -19,6 +19,7 @@ public class BookController : Controller
         _logger = logger;
     }
     [Route("Admin/Book")]
+    //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> Index()
     {
         var books = await _context.Carti
@@ -52,6 +53,7 @@ public class BookController : Controller
 
     [HttpGet]
     [Route("Admin/Book/Create")]
+    //[Authorize(Roles = "Admin")]
     public IActionResult Create()
     {
         ViewData["EdituraId"] = new SelectList(_context.Edituri, "EdituraId", "Denumire");
@@ -66,6 +68,7 @@ public class BookController : Controller
     [HttpPost]
     [ValidateAntiForgeryToken]
     [Route("Admin/Book/Create")]
+    //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create([Bind("CarteId,ISBN,ISSN,Cota,Titlu,TitluInfo,MentiuniResponsabilitate,Editie,EdituraId,DataPublicarii,LoculPublicarii,Bibliografie,Descriere,NrPagini,Pret,ZonaColectieId,LimbaId,TaraId,NumarInventar,CopertaURL")] Carte carte)
     {
         if (ModelState.IsValid)

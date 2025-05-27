@@ -1,9 +1,50 @@
 ﻿using localLib.Models;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
 
 namespace localLib.Data
 {
     public static class DbInitializer
     {
+        public static async Task InitializeAsync(IServiceProvider serviceProvider)
+        {
+            var context = serviceProvider.GetRequiredService<BibliotecaContext>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            context.Database.EnsureCreated();
+
+            // Check if roles already exist
+            if (!await roleManager.RoleExistsAsync("Admin"))
+            {
+                // Create Admin role
+                await roleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+
+            // Check if admin user exists
+            var adminUser = await userManager.FindByEmailAsync("admin@locallib.com");
+            if (adminUser == null)
+            {
+                // Create admin user
+                adminUser = new IdentityUser
+                {
+                    UserName = "admin@locallib.com",
+                    Email = "admin@locallib.com",
+                    EmailConfirmed = true
+                };
+
+                var result = await userManager.CreateAsync(adminUser, "Admin123!");
+                if (result.Succeeded)
+                {
+                    // Add admin user to Admin role
+                    await userManager.AddToRoleAsync(adminUser, "Admin");
+                }
+            }
+
+            // Your existing initialization code
+            Initialize(context);
+        }
+
         public static void Initialize(BibliotecaContext context)
         {
             context.Database.EnsureCreated();
@@ -108,19 +149,26 @@ namespace localLib.Data
             {
                 new Carte{
                     Titlu="Maitreyi",
-                    ISBN="978-973-50-3470-0",
-                    Cota="12412.92",
+                    ISBN="978-973-50-1234-5",
+                    Cota="821.135.1",
                     EdituraId=edituri[0].EdituraId,
                     DataPublicarii=new DateTime(1933, 1, 1),
                     LoculPublicarii="București",
                     NrPagini=256,
-                    Pret=39.99m,
+                    Pret=29.99m,
                     ZonaColectieId=zone[0].ZonaColectieId,
                     LimbaId=limbi[0].LimbaId,
                     TaraId=tari[0].TaraId,
                     NumarInventar=1001,
-                    Descriere="Romanul de dragoste scris de Mircea Eliade",
-                    CopertaURL="https://example.com/maitreyi.jpg"
+                    Descriere="Roman autobiografic de Mircea Eliade",
+                    CopertaURL="https://example.com/maitreyi.jpg",
+                    Editie = "Editia 1",
+                    Paginatie = "1-256",
+                    Ilustratii = "Nu",
+                    TitluInfo = "Orbitor - Trilogia",
+                    MentiuniResponsabilitate = "Această carte conține poeziile celebre ale lui Mihai Eminescu, inclusiv 'Luceafărul' și 'Scrisoarea III'.",
+                    ISSN = "1",
+                    Bibliografie = "https://ro.wikipedia.org/wiki/Mihai_Eminescu"
                 },
                 new Carte{
                     Titlu="Poezii",
@@ -136,7 +184,14 @@ namespace localLib.Data
                     TaraId=tari[0].TaraId,
                     NumarInventar=1002,
                     Descriere="Opera poetică a lui Mihai Eminescu",
-                    CopertaURL="https://example.com/eminescu.jpg"
+                    CopertaURL="https://example.com/eminescu.jpg",
+                    Editie = "Editia 1",
+                    Paginatie = "1-320",
+                    Ilustratii = "Nu",
+                    TitluInfo = "Orbitor - Trilogia",
+                    MentiuniResponsabilitate = "Această carte conține poeziile celebre ale lui Mihai Eminescu, inclusiv 'Luceafărul' și 'Scrisoarea III'.",
+                    ISSN = "3",
+                    Bibliografie = "https://ro.wikipedia.org/wiki/Mihai_Eminescu"
                 },
                 new Carte{
                     Titlu="Orbitor",
@@ -152,7 +207,14 @@ namespace localLib.Data
                     TaraId=tari[0].TaraId,
                     NumarInventar=1003,
                     Descriere="Trilogia fantastică a lui Mircea Cărtărescu",
-                    CopertaURL="https://example.com/orbitor.jpg"
+                    CopertaURL="https://example.com/orbitor.jpg",
+                    Editie = "Editia 1",
+                    Paginatie = "1-512",
+                    Ilustratii = "Da", // Add this
+                    TitluInfo = "Orbitor - Trilogia",
+                    MentiuniResponsabilitate = "Această carte conține poeziile celebre ale lui Mihai Eminescu, inclusiv 'Luceafărul' și 'Scrisoarea III'.",
+                    ISSN = "2",
+                    Bibliografie = "https://ro.wikipedia.org/wiki/Mihai_Eminescu"
                 }
             };
             foreach (Carte c in carti)
