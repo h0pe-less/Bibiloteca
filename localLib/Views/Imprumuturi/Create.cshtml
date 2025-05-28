@@ -1,0 +1,68 @@
+@model localLib.Models.Imprumut
+
+@{
+    ViewData["Title"] = "Creare Împrumut";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Adaugă Împrumut Nou</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="card mb-3">
+                <div class="card-header">Informații Student</div>
+                <div class="card-body">
+                    <div class="form-group mb-3">
+                        <label asp-for="Nume" class="control-label"></label>
+                        <input asp-for="Nume" class="form-control" />
+                        <span asp-validation-for="Nume" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Prenume" class="control-label"></label>
+                        <input asp-for="Prenume" class="form-control" />
+                        <span asp-validation-for="Prenume" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Grupa" class="control-label"></label>
+                        <input asp-for="Grupa" class="form-control" />
+                        <span asp-validation-for="Grupa" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-3">
+                <div class="card-header">Detalii Împrumut</div>
+                <div class="card-body">
+                    <div class="form-group mb-3">
+                        <label asp-for="CarteId" class="control-label">Carte</label>
+                        <select asp-for="CarteId" class="form-control" asp-items="ViewBag.CarteId">
+                            <option value="">-- Selectați Cartea --</option>
+                        </select>
+                        <span asp-validation-for="CarteId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="DataImprumut" class="control-label"></label>
+                        <input asp-for="DataImprumut" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                        <span asp-validation-for="DataImprumut" class="text-danger"></span>
+                    </div>
+                    <div class="alert alert-info">
+                        <small><i class="fas fa-info-circle"></i> Data returnării va fi setată când cartea este returnată.</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Adaugă" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Anulează</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

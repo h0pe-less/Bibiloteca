@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("localLib")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7488538b89bdb052d6b038ea8424d033d2718ac5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+10f64d34c89e97463c24ccfe19563073e47be608")]
 [assembly: System.Reflection.AssemblyProductAttribute("localLib")]
 [assembly: System.Reflection.AssemblyTitleAttribute("localLib")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

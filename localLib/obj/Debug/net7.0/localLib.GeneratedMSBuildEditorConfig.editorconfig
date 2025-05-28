@@ -60,6 +60,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZWFyY2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Diploma/Bibiloteca/localLib/Views/Imprumuturi/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcnVtdXR1cmlcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Diploma/Bibiloteca/localLib/Views/Imprumuturi/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcnVtdXR1cmlcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Diploma/Bibiloteca/localLib/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

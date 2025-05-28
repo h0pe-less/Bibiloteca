@@ -20,6 +20,7 @@ namespace localLib.Data
         public DbSet<Carte> Carti { get; set; }
         public DbSet<CarteAutor> CartiAutori { get; set; }
         public DbSet<CarteCategorie> CartiCategorii { get; set; }
+        public DbSet<Imprumut> Imprumuturi { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -35,6 +36,12 @@ namespace localLib.Data
                 .HasOne(ca => ca.Autor)
                 .WithMany(a => a.CartiAutor)
                 .HasForeignKey(ca => ca.AutorId);
+
+            modelBuilder.Entity<Imprumut>()
+                .HasOne(i => i.Carte)
+                .WithMany()
+                .HasForeignKey(i => i.CarteId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<CarteCategorie>()
                 .HasKey(cc => new { cc.CarteId, cc.CategorieId });

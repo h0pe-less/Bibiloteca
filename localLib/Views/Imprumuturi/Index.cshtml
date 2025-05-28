@@ -1,0 +1,209 @@
+@model PaginatedList<localLib.Models.Imprumut>
+
+@{
+    ViewData["Title"] = "Împrumuturi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Listă Împrumuturi</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary mb-2">Adaugă împrumut nou</a>
+</p>
+
+<div class="card mb-3">
+    <div class="card-header">
+        <h5>Căutare și Filtrare</h5>
+    </div>
+    <div class="card-body">
+        <form asp-action="Index" method="get">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="SearchString">Căutare</label>
+                        <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" 
+                               class="form-control" placeholder="Nume, prenume, grupa sau titlu carte..." />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="StatusFilter">Status</label>
+                        <select name="StatusFilter" class="form-control">
+                            <option value="">Toate</option>
+                            <option value="neretornat" selected="@(ViewData["StatusFilter"]?.ToString() == "neretornat")">Neretornate</option>
+                            <option value="returnat" selected="@(ViewData["StatusFilter"]?.ToString() == "returnat")">Returnate</option>
+                            <option value="intarziat" selected="@(ViewData["StatusFilter"]?.ToString() == "intarziat")">Întârziate</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <div>
+                            <input type="submit" value="Căutare" class="btn btn-outline-primary" />
+                            <a asp-action="Index" class="btn btn-outline-secondary">Reset</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="alert alert-info">
+    <strong>Total înregistrări:</strong> @ViewBag.TotalCount
+    @if (!string.IsNullOrEmpty(ViewData["CurrentFilter"]?.ToString()))
+    {
+        <span> | <strong>Filtrate după:</strong> "@ViewData["CurrentFilter"]"</span>
+    }
+</div>
+
+<div style="overflow-x: auto;">
+    <table class="table table-striped table-bordered table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NumeSortParm"]" 
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       asp-route-statusFilter="@ViewData["StatusFilter"]">
+                        Nume
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["PrenumeSortParm"]" 
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       asp-route-statusFilter="@ViewData["StatusFilter"]">
+                        Prenume
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["GrupaSortParm"]" 
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       asp-route-statusFilter="@ViewData["StatusFilter"]">
+                        Grupa
+                    </a>
+                </th>
+                <th>Carte</th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DataImprumutSortParm"]" 
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       asp-route-statusFilter="@ViewData["StatusFilter"]">
+                        Data Împrumut
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DataReturnareSort"]" 
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       asp-route-statusFilter="@ViewData["StatusFilter"]">
+                        Data Returnare
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["StatusSortParm"]" 
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       asp-route-statusFilter="@ViewData["StatusFilter"]">
+                        Status
+                    </a>
+                </th>
+                <th>Acțiuni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    var statusClass = item.EsteReturnat ? "table-success" : "table-warning";
+                    
+                    <tr class="@statusClass">
+                        <td>@item.Nume</td>
+                        <td>@item.Prenume</td>
+                        <td>@item.Grupa</td>
+                        <td>@item.Carte?.Titlu</td>
+                        <td>@item.DataImprumut.ToShortDateString()</td>
+                        <td>@item.DataReturnare?.ToShortDateString()</td>
+                        <td>
+                            @if (item.EsteReturnat)
+                            {
+                                <span class="badge badge-success">Returnat</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">Împrumutat</span>
+                            }
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a asp-action="Details" asp-route-id="@item.ImprumutId" class="btn btn-sm btn-info">Detalii</a>
+                                <a asp-action="Edit" asp-route-id="@item.ImprumutId" class="btn btn-sm btn-warning">Editare</a>
+                                @if (!item.EsteReturnat)
+                                {
+                                    <form asp-action="Return" asp-route-id="@item.ImprumutId" method="post" style="display:inline;">
+                                        <button type="submit" class="btn btn-sm btn-success" 
+                                                onclick="return confirm('Confirmați returnarea cărții?')">
+                                            Returnează
+                                        </button>
+                                    </form>
+                                }
+                                <a asp-action="Delete" asp-route-id="@item.ImprumutId" class="btn btn-sm btn-danger">Ștergere</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="10" class="text-center">Nu există împrumuturi înregistrate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Pagination -->
+@if (Model != null && Model.TotalPages > 1)
+{
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+                <a class="page-link" asp-action="Index" 
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex - 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-statusFilter="@ViewData["StatusFilter"]">
+                    Anterior
+                </a>
+            </li>
+
+            @for (int i = Math.Max(1, Model.PageIndex - 2); i <= Math.Min(Model.TotalPages, Model.PageIndex + 2); i++)
+            {
+                <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                    <a class="page-link" asp-action="Index" 
+                       asp-route-sortOrder="@ViewData["CurrentSort"]"
+                       asp-route-pageNumber="@i"
+                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                       asp-route-statusFilter="@ViewData["StatusFilter"]">
+                        @i
+                    </a>
+                </li>
+            }
+
+            <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+                <a class="page-link" asp-action="Index" 
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex + 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   asp-route-statusFilter="@ViewData["StatusFilter"]">
+                    Următor
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="text-center">
+        <small class="text-muted">
+            Pagina @Model.PageIndex din @Model.TotalPages
+        </small>
+    </div>
+}
