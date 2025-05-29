@@ -59,7 +59,6 @@ namespace localLib.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CopertaURL")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Cota")

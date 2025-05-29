@@ -1,0 +1,132 @@
+@model localLib.Models.Imprumut
+
+@{
+    ViewData["Title"] = "Editează Împrumut";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Editează Împrumut</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5>Informații Împrumut</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="ImprumutId" />
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Nume" class="control-label"></label>
+                                <input asp-for="Nume" class="form-control" />
+                                <span asp-validation-for="Nume" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Prenume" class="control-label"></label>
+                                <input asp-for="Prenume" class="form-control" />
+                                <span asp-validation-for="Prenume" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Grupa" class="control-label"></label>
+                                <input asp-for="Grupa" class="form-control" />
+                                <span asp-validation-for="Grupa" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="CarteId" class="control-label">Carte</label>
+                                <select asp-for="CarteId" class="form-control" asp-items="ViewBag.CarteId">
+                                    <option value="">-- Selectează Cartea --</option>
+                                </select>
+                                <span asp-validation-for="CarteId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="DataImprumut" class="control-label"></label>
+                                <input asp-for="DataImprumut" class="form-control" type="date" />
+                                <span asp-validation-for="DataImprumut" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group form-check">
+                        <input asp-for="EsteReturnat" class="form-check-input" />
+                        <label asp-for="EsteReturnat" class="form-check-label">
+                            Este returnat
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="submit" value="Salvează modificările" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-outline-secondary">Înapoi la listă</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Informații suplimentare</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Status:</strong> 
+                    @if (Model.EsteReturnat)
+                    {
+                        <span class="badge badge-success text-dark">Returnat</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-warning text-dark">Nereturnat</span>
+                    }
+                </p>
+                
+                @if (Model.DataReturnare.HasValue)
+                {
+                    <p><strong>Data returnării:</strong> @Model.DataReturnare.Value.ToString("dd/MM/yyyy")</p>
+                }
+                
+                <hr>
+                <div class="d-grid gap-2">
+                    @if (!Model.EsteReturnat)
+                    {
+                        <form asp-action="Return" asp-route-id="@Model.ImprumutId" method="post" 
+                              onsubmit="return confirm('Ești sigur că vrei să marchezi această carte ca returnată?');">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-success btn-block">
+                                <i class="fas fa-check"></i> Marchează ca returnat
+                            </button>
+                        </form>
+                    }
+                    <form asp-action="Delete" asp-route-id="@Model.ImprumutId" method="post" class="mt-2"
+                          onsubmit="return confirm('Ești sigur că vrei să ștergi definitiv acest împrumut? Această acțiune nu poate fi anulată.');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger btn-block">
+                            <i class="fas fa-trash"></i> Șterge împrumut
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

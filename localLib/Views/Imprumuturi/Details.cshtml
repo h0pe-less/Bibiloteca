@@ -1,0 +1,70 @@
+@model localLib.Models.Imprumut
+
+@{
+    ViewData["Title"] = "Detalii Împrumut";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Detalii Împrumut</h1>
+
+<div class="card">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Nume)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Nume)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Prenume)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Prenume)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Grupa)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Grupa)</dd>
+
+            <dt class="col-sm-3">Carte</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Carte.Titlu)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DataImprumut)</dt>
+            <dd class="col-sm-9">@Model.DataImprumut.ToString("dd/MM/yyyy")</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DataReturnare)</dt>
+            <dd class="col-sm-9">
+                @if (Model.DataReturnare.HasValue)
+                {
+                    @Model.DataReturnare.Value.ToString("dd/MM/yyyy")
+                }
+                else
+                {
+                    <span class="text-muted">Nu a fost returnată</span>
+                }
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model.ImprumutId" class="btn btn-primary">
+        <i class="fas fa-edit"></i> Editează
+    </a>
+    
+    @if (!Model.EsteReturnat)
+    {
+        <form asp-action="Return" asp-route-id="@Model.ImprumutId" method="post" style="display: inline;" 
+              onsubmit="return confirm('Ești sigur că vrei să marchezi această carte ca returnată?');">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-check"></i> Marchează ca returnat
+            </button>
+        </form>
+    }
+    
+    <form asp-action="Delete" asp-route-id="@Model.ImprumutId" method="post" style="display: inline;" 
+          onsubmit="return confirm('Ești sigur că vrei să ștergi definitiv acest împrumut? Această acțiune nu poate fi anulată.');">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger">
+            <i class="fas fa-trash"></i> Șterge împrumut
+        </button>
+    </form>
+    
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Înapoi la listă
+    </a>
+</div>

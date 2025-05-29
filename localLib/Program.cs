@@ -20,6 +20,11 @@ namespace localLib
 
             builder.Services.AddFluentValidationAutoValidation();
             builder.Services.AddValidatorsFromAssemblyContaining<CarteValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<ImprumutValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<AutorValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<ZonaColectieValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<EdituraValidator>();
+
 
             builder.Services.AddDbContext<BibliotecaContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("BibliotecaConnection")));

@@ -15,6 +15,6 @@ namespace localLib.Models
         [StringLength(200)]
         public string Description { get; set; } = default!;
         
-        public ICollection<Book> Books { get; set; } = new List<Book>();
+        public ICollection<Carte> Books { get; set; } = new List<Carte>();
     }
 }

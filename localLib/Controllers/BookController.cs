@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using localLib.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Drawing.Printing;
+using FluentValidation;
+
 namespace localLib.Controllers;
 
 public class BookController : Controller
@@ -172,9 +174,30 @@ public class BookController : Controller
     }
 
     [Route("Admin/Book/Details/{id}")]
-    public IActionResult Details()
+    public async Task<IActionResult> Details(long? id)
     {
-        return View();
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var carte = await _context.Carti
+            .Include(c => c.Editura)
+            .Include(c => c.Limba)
+            .Include(c => c.Tara)
+            .Include(c => c.ZonaColectie)
+            .Include(c => c.Autori)
+                .ThenInclude(ca => ca.Autor)
+            .Include(c => c.CarteCategorii)
+                .ThenInclude(cc => cc.Categorie)
+            .FirstOrDefaultAsync(m => m.CarteId == id);
+
+        if (carte == null)
+        {
+            return NotFound();
+        }
+
+        return View(carte);
     }
 
     [HttpGet]

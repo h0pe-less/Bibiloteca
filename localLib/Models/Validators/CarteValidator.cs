@@ -8,27 +8,19 @@ namespace localLib.Validators
         public CarteValidator()
         {
             RuleFor(x => x.Titlu)
-                .NotEmpty().WithMessage("Titlul este obligatoriu")
-                .MaximumLength(200).WithMessage("Titlul nu poate depăși 200 caractere");
-
-            RuleFor(x => x.ISBN)
-                .NotEmpty().WithMessage("ISBN este obligatoriu")
-                .MaximumLength(20).WithMessage("ISBN nu poate depăși 20 caractere");
+                .NotEmpty().WithMessage("Titlul este obligatoriu");
 
             RuleFor(x => x.Cota)
-                .NotEmpty().WithMessage("Cota este obligatorie")
-                .MaximumLength(50).WithMessage("Cota nu poate depăși 50 caractere");
+                .NotEmpty().WithMessage("Cota este obligatorie");
 
             RuleFor(x => x.TitluInfo)
-                .NotEmpty().WithMessage("Informația titlului este obligatorie")
-                .MaximumLength(200).WithMessage("Informația titlului nu poate depăși 200 caractere");
+                .NotEmpty().WithMessage("Informația titlului este obligatorie");
 
             RuleFor(x => x.MentiuniResponsabilitate)
                 .NotEmpty().WithMessage("Mențiunile de responsabilitate sunt obligatorii");
 
             RuleFor(x => x.Editie)
-                .NotEmpty().WithMessage("Ediția este obligatorie")
-                .MaximumLength(50).WithMessage("Ediția nu poate depăși 50 caractere");
+                .NotEmpty().WithMessage("Ediția este obligatorie");
 
             RuleFor(x => x.EdituraId)
                 .NotEmpty().WithMessage("Editura este obligatorie");
@@ -38,8 +30,7 @@ namespace localLib.Validators
                 .LessThanOrEqualTo(DateTime.Now).WithMessage("Data publicării nu poate fi în viitor");
 
             RuleFor(x => x.LoculPublicarii)
-                .NotEmpty().WithMessage("Locul publicării este obligatoriu")
-                .MaximumLength(100).WithMessage("Locul publicării nu poate depăși 100 caractere");
+                .NotEmpty().WithMessage("Locul publicării este obligatoriu");
 
             RuleFor(x => x.Bibliografie)
                 .NotEmpty().WithMessage("Bibliografia este obligatorie");
@@ -65,19 +56,14 @@ namespace localLib.Validators
                 .NotEmpty().WithMessage("Țara este obligatorie");
 
             RuleFor(x => x.NumarInventar)
-                .NotEmpty().WithMessage("Numărul de inventar este obligatoriu")
-                .GreaterThan(0).WithMessage("Numărul de inventar trebuie să fie mai mare de 0");
+                .NotEmpty().WithMessage("Numărul de inventar este obligatoriu");
 
             RuleFor(x => x.Paginatie)
-                .NotEmpty().WithMessage("Paginația este obligatorie")
-                .MaximumLength(50).WithMessage("Paginația nu poate depăși 50 caractere");
-
+                .NotEmpty().WithMessage("Paginația este obligatorie");
             RuleFor(x => x.Ilustratii)
-                .NotEmpty().WithMessage("Informația despre ilustrații este obligatorie")
-                .Must(x => x == "Da" || x == "Nu").WithMessage("Valoarea pentru ilustrații trebuie să fie 'Da' sau 'Nu'");
+                .NotEmpty().WithMessage("Informația despre ilustrații este obligatorie");
 
             RuleFor(x => x.CopertaURL)
-                .NotEmpty().WithMessage("URL-ul coperții este obligatoriu")
                 .MaximumLength(255).WithMessage("URL-ul coperții nu poate depăși 255 caractere")
                 .Must(uri => Uri.TryCreate(uri, UriKind.Absolute, out _))
                 .WithMessage("URL-ul coperții trebuie să fie valid");

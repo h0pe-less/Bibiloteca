@@ -1,0 +1,130 @@
+@model localLib.Models.Autor
+
+@{
+    ViewData["Title"] = "Detalii Autor";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Detalii Autor</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NumePrenume)</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.NumePrenume)</dd>
+
+                    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DataNasterii)</dt>
+                    <dd class="col-sm-9">
+                        @Model.DataNasterii.ToString("dd/MM/yyyy")
+                        <small class="text-muted">
+                            (@((DateTime.Now.Year - Model.DataNasterii.Year)) ani)
+                        </small>
+                    </dd>
+
+                    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Biografie)</dt>
+                    <dd class="col-sm-9">
+                        <div style="max-height: 200px; overflow-y: auto;">
+                            @Html.DisplayFor(model => model.Biografie)
+                        </div>
+                    </dd>
+
+                    <dt class="col-sm-3">Numărul de cărți</dt>
+                    <dd class="col-sm-9">
+                        <span class="badge badge-primary">@Model.CartiAutor?.Count cărți</span>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        @if (Model.CartiAutor?.Any() == true)
+        {
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5>Cărți scrise de acest autor</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Titlu</th>
+                                    <th>Editura</th>
+                                    <th>An publicare</th>
+                                    <th>Acțiuni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var carteAutor in Model.CartiAutor)
+                                {
+                                    <tr>
+                                        <td>@carteAutor.Carte?.Titlu</td>
+                                        <td>@carteAutor.Carte?.Editura?.Denumire</td>
+                                        <td>@carteAutor.Carte?.DataPublicarii.Year</td>
+                                        <td>
+                                            <a asp-controller="Book" asp-action="Details" asp-route-id="@carteAutor.Carte?.CarteId" class="btn btn-sm btn-outline-info">
+                                                Vezi carte
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Statistici</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>ID:</strong> @Model.AutorId</p>
+                <p><strong>Vârsta:</strong> @((DateTime.Now.Year - Model.DataNasterii.Year)) ani</p>
+                <p><strong>Numărul total de cărți:</strong> @Model.CartiAutor?.Count</p>
+                
+                @if (Model.CartiAutor?.Any() == true)
+                {
+                    var earliestBook = Model.CartiAutor.OrderBy(ca => ca.Carte?.DataPublicarii).FirstOrDefault();
+                    var latestBook = Model.CartiAutor.OrderByDescending(ca => ca.Carte?.DataPublicarii).FirstOrDefault();
+                    
+                    <p><strong>Prima carte publicată:</strong> @earliestBook?.Carte?.DataPublicarii.Year</p>
+                    <p><strong>Ultima carte publicată:</strong> @latestBook?.Carte?.DataPublicarii.Year</p>
+                }
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5>Acțiuni rapide</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a asp-action="Edit" asp-route-id="@Model.AutorId" class="btn btn-primary btn-block">
+                        <i class="fas fa-edit"></i> Editează autor
+                    </a>
+                    <a asp-controller="Book" asp-action="Create" class="btn btn-success btn-block">
+                        <i class="fas fa-plus"></i> Adaugă carte nouă
+                    </a>
+                    <form asp-action="Delete" asp-route-id="@Model.AutorId" method="post" 
+                          onsubmit="return confirm('Ești sigur că vrei să ștergi definitiv acest autor? Această acțiune nu poate fi anulată.');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger btn-block">
+                            <i class="fas fa-trash"></i> Șterge autor
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Înapoi la listă
+    </a>
+</div>

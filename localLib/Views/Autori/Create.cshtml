@@ -1,0 +1,66 @@
+@model localLib.Models.Autor
+
+@{
+    ViewData["Title"] = "Creare Autor";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Adaugă Autor Nou</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="card mb-3">
+                <div class="card-header">Informații Autor</div>
+                <div class="card-body">
+                    <div class="form-group mb-3">
+                        <label asp-for="NumePrenume" class="control-label"></label>
+                        <input asp-for="NumePrenume" class="form-control" placeholder="Ex: Ion Creangă" />
+                        <span asp-validation-for="NumePrenume" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label asp-for="DataNasterii" class="control-label"></label>
+                        <input asp-for="DataNasterii" class="form-control" type="date" />
+                        <span asp-validation-for="DataNasterii" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label asp-for="Biografie" class="control-label"></label>
+                        <textarea asp-for="Biografie" class="form-control" rows="6" 
+                                  placeholder="Scurtă biografie a autorului..."></textarea>
+                        <span asp-validation-for="Biografie" class="text-danger"></span>
+                        <small class="form-text text-muted">Descrierea poate conține maxim 1000 de caractere.</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Adaugă" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Anulează</a>
+            </div>
+        </form>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Ghid completare</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-info-circle text-info"></i> <strong>Nume Prenume:</strong> Completați numele complet al autorului</li>
+                    <li><i class="fas fa-calendar text-info"></i> <strong>Data nașterii:</strong> Selectați data din calendar</li>
+                    <li><i class="fas fa-book text-info"></i> <strong>Biografie:</strong> Adăugați informații relevante despre autor</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

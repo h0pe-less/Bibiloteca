@@ -12,6 +12,7 @@ namespace localLib.Controllers
     public class ImprumuturiController : Controller
     {
         private readonly BibliotecaContext _context;
+        
 
         public ImprumuturiController(BibliotecaContext context)
         {
@@ -43,6 +44,9 @@ namespace localLib.Controllers
 
             var imprumuturi = from i in _context.Imprumuturi.Include(i => i.Carte)
                               select i;
+
+            // Get total count for display
+            ViewBag.TotalCount = await imprumuturi.CountAsync();
 
             // Search functionality
             if (!String.IsNullOrEmpty(searchString))
@@ -178,12 +182,14 @@ namespace localLib.Controllers
 
         [HttpPost("Edit/{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("ImprumutId,Nume,Prenume,Grupa,DataImprumut,DataReturnare,CarteId,EsteReturnat,DataReturnareEfectiva")] Imprumut imprumut)
+        public async Task<IActionResult> Edit(long id, [Bind("ImprumutId,Nume,Prenume,Grupa,DataImprumut,CarteId,EsteReturnat")] Imprumut imprumut)
         {
             if (id != imprumut.ImprumutId)
             {
                 return NotFound();
             }
+
+            ModelState.Remove("Carte");
 
             if (ModelState.IsValid)
             {
@@ -220,6 +226,7 @@ namespace localLib.Controllers
             }
 
             imprumut.EsteReturnat = true;
+            imprumut.DataReturnare = DateTime.Now;
 
             _context.Update(imprumut);
             await _context.SaveChangesAsync();
@@ -227,30 +234,9 @@ namespace localLib.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpGet("Delete/{id}")]
-        public async Task<IActionResult> Delete(long? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var imprumut = await _context.Imprumuturi
-                .Include(i => i.Carte)
-                .FirstOrDefaultAsync(m => m.ImprumutId == id);
-
-            if (imprumut == null)
-            {
-                return NotFound();
-            }
-
-            return View(imprumut);
-        }
-
         [HttpPost("Delete/{id}")]
-        [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
+        public async Task<IActionResult> Delete(long id)
         {
             var imprumut = await _context.Imprumuturi.FindAsync(id);
             if (imprumut != null)

@@ -1,0 +1,79 @@
+@model localLib.Models.Editura
+
+@{
+    ViewData["Title"] = "Editează Editură";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Editează Editură</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5>Informații Editură</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="EdituraId" />
+                    
+                    <div class="form-group mb-3">
+                        <label asp-for="Denumire" class="control-label"></label>
+                        <input asp-for="Denumire" class="form-control" />
+                        <span asp-validation-for="Denumire" class="text-danger"></span>
+                        <small class="form-text text-muted">Denumirea completă a editurii care publică cărțile.</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="submit" value="Salvează modificările" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-outline-secondary">Înapoi la listă</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Informații suplimentare</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>ID Editură:</strong> @Model.EdituraId</p>
+                <p><strong>Numărul de cărți:</strong> @Model.Carti?.Count</p>
+                
+                @if (Model.Carti?.Any() == true)
+                {
+                    <hr>
+                    <h6>Exemple de cărți publicate:</h6>
+                    <ul class="list-unstyled">
+                        @foreach (var carte in Model.Carti.Take(5))
+                        {
+                            <li><small><i class="fas fa-book"></i> @carte.Titlu</small></li>
+                        }
+                        @if (Model.Carti.Count > 5)
+                        {
+                            <li><small class="text-muted">... și încă @(Model.Carti.Count - 5) cărți</small></li>
+                        }
+                    </ul>
+                }
+                
+                <hr>
+                <div class="d-grid gap-2">
+                    <form asp-action="Delete" asp-route-id="@Model.EdituraId" method="post" class="mt-2"
+                          onsubmit="return confirm('Ești sigur că vrei să ștergi definitiv această editură? Această acțiune nu poate fi anulată.');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger btn-block">
+                            <i class="fas fa-trash"></i> Șterge editură
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

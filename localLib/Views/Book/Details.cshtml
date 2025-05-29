@@ -1,65 +1,117 @@
-@model localLib.Models.Book
+@model localLib.Models.Carte
 
 @{
-    ViewData["Title"] = "Book Details";
+    ViewData["Title"] = "Detalii Carte";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Book Details</h1>
+<h1>Detalii Carte</h1>
 
-<div>
-    <div class="row">
-        <div class="col-md-4">
-            @if (!string.IsNullOrEmpty(Model.CoverImageUrl))
-            {
-                <img src="@Model.CoverImageUrl" class="img-fluid mb-3" />
-            }
-        </div>
-        <div class="col-md-8">
-            <dl class="row">
-                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Title)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.Title)</dd>
+<div class="row">
+    <div class="col-md-8">
+        <dl class="row">
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Titlu)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Titlu)</dd>
 
-                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Author)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.Author)</dd>
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.TitluInfo)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.TitluInfo)</dd>
 
-                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ISBN)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.ISBN)</dd>
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.MentiuniResponsabilitate)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MentiuniResponsabilitate)</dd>
 
-                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Genre)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.Genre.Name)</dd>
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ISBN)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.ISBN)</dd>
 
-                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Publisher)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.Publisher.Name)</dd>
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ISSN)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.ISSN)</dd>
 
-                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.PublicationYear)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.PublicationYear)</dd>
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Cota)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Cota)</dd>
 
-                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.PageCount)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.PageCount)</dd>
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Editie)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Editie)</dd>
 
-                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Description)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+            <dt class="col-sm-3">Editura</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Editura.Denumire)</dd>
 
-                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Price)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.Price)</dd>
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DataPublicarii)</dt>
+            <dd class="col-sm-9">@Model.DataPublicarii.ToString("dd/MM/yyyy")</dd>
 
-                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.AvailableCopies)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.AvailableCopies)</dd>
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.LoculPublicarii)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.LoculPublicarii)</dd>
 
-                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.DateAdded)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.DateAdded)</dd>
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NrPagini)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.NrPagini)</dd>
 
-                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ShelfLocation)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.ShelfLocation)</dd>
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Pret)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Pret) RON</dd>
 
-                <dt class="col-sm-3">@Html.DisplayNameFor(model => model.IsFeatured)</dt>
-                <dd class="col-sm-9">@Html.DisplayFor(model => model.IsFeatured)</dd>
-            </dl>
-        </div>
+            <dt class="col-sm-3">Zona Colecție</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.ZonaColectie.DenumireZona)</dd>
+
+            <dt class="col-sm-3">Limba</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Limba.DenumireLimba)</dd>
+
+            <dt class="col-sm-3">Țara</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Tara.DenumireTara)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NumarInventar)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.NumarInventar)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Paginatie)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Paginatie)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Ilustratii)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Ilustratii)</dd>
+
+            <dt class="col-sm-3">Autori</dt>
+            <dd class="col-sm-9">
+                @if (Model.Autori.Any())
+                {
+                    @string.Join(", ", Model.Autori.Select(a => a.Autor?.NumePrenume))
+                }
+                else
+                {
+                    <span class="text-muted">Nu sunt autori asociați</span>
+                }
+            </dd>
+
+            <dt class="col-sm-3">Categorii</dt>
+            <dd class="col-sm-9">
+                @if (Model.CarteCategorii.Any())
+                {
+                    @string.Join(", ", Model.CarteCategorii.Select(c => c.Categorie?.Denumire))
+                }
+                else
+                {
+                    <span class="text-muted">Nu sunt categorii asociate</span>
+                }
+            </dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Bibliografie)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Bibliografie)</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Descriere)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Descriere)</dd>
+        </dl>
+    </div>
+    
+    <div class="col-md-4">
+        @if (!string.IsNullOrEmpty(Model.CopertaURL))
+        {
+            <img src="@Model.CopertaURL" alt="Coperta cărții" class="img-fluid" />
+        }
+        else
+        {
+            <div class="bg-light p-4 text-center">
+                <i class="fas fa-book fa-3x text-muted"></i>
+                <p class="mt-2 text-muted">Nu există imagine</p>
+            </div>
+        }
     </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
-    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model?.CarteId" class="btn btn-primary">Editează</a>
+    <a asp-action="Index" class="btn btn-secondary">Înapoi la listă</a>
 </div>

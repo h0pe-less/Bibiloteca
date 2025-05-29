@@ -1,0 +1,145 @@
+@model PaginatedList<localLib.Models.Editura>
+
+@{
+    ViewData["Title"] = "Edituri";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Listă Edituri</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary mb-2">Adaugă editură nouă</a>
+</p>
+
+<div class="card mb-3">
+    <div class="card-header">
+        <h5>Căutare și Filtrare</h5>
+    </div>
+    <div class="card-body">
+        <form asp-action="Index" method="get">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="SearchString">Căutare</label>
+                        <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" class="form-control"
+                            placeholder="Denumire editură..." />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <div>
+                            <input type="submit" value="Căutare" class="btn btn-outline-primary" />
+                            <a asp-action="Index" class="btn btn-outline-secondary">Reset</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="alert alert-info">
+    <strong>Total înregistrări:</strong> @ViewBag.TotalCount
+    @if (!string.IsNullOrEmpty(ViewData["CurrentFilter"]?.ToString()))
+    {
+        <span> | <strong>Filtrate după:</strong> "@ViewData["CurrentFilter"]"</span>
+    }
+</div>
+
+<div style="overflow-x: auto;">
+    <table class="table table-striped table-bordered table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DenumireSortParm"]"
+                        asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                        Denumire Editura
+                    </a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NumarCartiSortParm"]"
+                        asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                        Numărul de Cărți
+                    </a>
+                </th>
+                <th>Acțiuni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Denumire</td>
+                        <td>
+                            <span class="badge badge-info text-dark">@item.Carti?.Count cărți</span>
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a asp-action="Details" asp-route-id="@item.EdituraId" class="btn btn-sm btn-info">
+                                    <i class="fas fa-eye"></i> Detalii
+                                </a>
+                                <a asp-action="Edit" asp-route-id="@item.EdituraId" class="btn btn-sm btn-warning">
+                                    <i class="fas fa-edit"></i> Editare
+                                </a>
+                                <form asp-action="Delete" asp-route-id="@item.EdituraId" method="post" style="display: inline;" 
+                                    onsubmit="return confirm('Ești sigur că vrei să ștergi definitiv această editură? Această acțiune nu poate fi anulată.');">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i> Șterge
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3" class="text-center">Nu există edituri înregistrate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Pagination -->
+@if (Model != null && Model.TotalPages > 1)
+{
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
+                <a class="page-link" asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+                    asp-route-pageNumber="@(Model.PageIndex - 1)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                    Anterior
+                </a>
+            </li>
+
+            @for (int i = Math.Max(1, Model.PageIndex - 2); i <= Math.Min(Model.TotalPages, Model.PageIndex + 2); i++)
+            {
+                <li class="page-item @(i == Model.PageIndex ? "active" : "")">
+                    <a class="page-link" asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+                        asp-route-pageNumber="@i" asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                        @i
+                    </a>
+                </li>
+            }
+
+            <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
+                <a class="page-link" asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+                    asp-route-pageNumber="@(Model.PageIndex + 1)" asp-route-currentFilter="@ViewData["CurrentFilter"]">
+                    Următor
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="text-center">
+        <small class="text-muted">
+            Pagina @Model.PageIndex din @Model.TotalPages
+        </small>
+    </div>
+}

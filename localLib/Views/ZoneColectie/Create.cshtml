@@ -1,0 +1,57 @@
+@model localLib.Models.ZonaColectie
+
+@{
+    ViewData["Title"] = "Creare Zonă Colecție";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Adaugă Zonă Colecție Nouă</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="card mb-3">
+                <div class="card-header">Informații Zonă Colecție</div>
+                <div class="card-body">
+                    <div class="form-group mb-3">
+                        <label asp-for="DenumireZona" class="control-label"></label>
+                        <input asp-for="DenumireZona" class="form-control" placeholder="Ex: Științe Exacte, Literatură Română, etc." />
+                        <span asp-validation-for="DenumireZona" class="text-danger"></span>
+                        <small class="form-text text-muted">Denumirea zonei de colecție unde vor fi plasate cărțile.</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Adaugă" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Anulează</a>
+            </div>
+        </form>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Ghid completare</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-info-circle text-info"></i> <strong>Denumire Zonă:</strong> Numele zonei de colecție (ex: "Literatură Română")</li>
+                    <li><i class="fas fa-book text-info"></i> <strong>Organizare:</strong> Zonele ajută la organizarea cărților în bibliotecă</li>
+                    <li><i class="fas fa-map-marker-alt text-info"></i> <strong>Localizare:</strong> Fiecare zonă poate reprezenta o secțiune fizică</li>
+                </ul>
+                
+                <div class="alert alert-info mt-3">
+                    <small><i class="fas fa-lightbulb"></i> <strong>Sugestii:</strong> Literatură Română, Științe Exacte, Istorie, Limbi Străine, Referințe</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -21,8 +21,8 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="SearchString">Căutare</label>
-                        <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" 
-                               class="form-control" placeholder="Nume, prenume, grupa sau titlu carte..." />
+                        <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" class="form-control"
+                            placeholder="Nume, prenume, grupa sau titlu carte..." />
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -30,9 +30,10 @@
                         <label for="StatusFilter">Status</label>
                         <select name="StatusFilter" class="form-control">
                             <option value="">Toate</option>
-                            <option value="neretornat" selected="@(ViewData["StatusFilter"]?.ToString() == "neretornat")">Neretornate</option>
-                            <option value="returnat" selected="@(ViewData["StatusFilter"]?.ToString() == "returnat")">Returnate</option>
-                            <option value="intarziat" selected="@(ViewData["StatusFilter"]?.ToString() == "intarziat")">Întârziate</option>
+                            <option value="neretornat"
+                                selected="@(ViewData["StatusFilter"]?.ToString() == "neretornat")">Nereturnate</option>
+                            <option value="returnat" selected="@(ViewData["StatusFilter"]?.ToString() == "returnat")">
+                                Returnate</option>
                         </select>
                     </div>
                 </div>
@@ -63,45 +64,45 @@
         <thead class="thead-dark">
             <tr>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NumeSortParm"]" 
-                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                       asp-route-statusFilter="@ViewData["StatusFilter"]">
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NumeSortParm"]"
+                        asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                        asp-route-statusFilter="@ViewData["StatusFilter"]">
                         Nume
                     </a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["PrenumeSortParm"]" 
-                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                       asp-route-statusFilter="@ViewData["StatusFilter"]">
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["PrenumeSortParm"]"
+                        asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                        asp-route-statusFilter="@ViewData["StatusFilter"]">
                         Prenume
                     </a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["GrupaSortParm"]" 
-                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                       asp-route-statusFilter="@ViewData["StatusFilter"]">
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["GrupaSortParm"]"
+                        asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                        asp-route-statusFilter="@ViewData["StatusFilter"]">
                         Grupa
                     </a>
                 </th>
                 <th>Carte</th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DataImprumutSortParm"]" 
-                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                       asp-route-statusFilter="@ViewData["StatusFilter"]">
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DataImprumutSortParm"]"
+                        asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                        asp-route-statusFilter="@ViewData["StatusFilter"]">
                         Data Împrumut
                     </a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DataReturnareSort"]" 
-                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                       asp-route-statusFilter="@ViewData["StatusFilter"]">
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DataReturnareSort"]"
+                        asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                        asp-route-statusFilter="@ViewData["StatusFilter"]">
                         Data Returnare
                     </a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["StatusSortParm"]" 
-                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                       asp-route-statusFilter="@ViewData["StatusFilter"]">
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["StatusSortParm"]"
+                        asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                        asp-route-statusFilter="@ViewData["StatusFilter"]">
                         Status
                     </a>
                 </th>
@@ -114,7 +115,7 @@
                 foreach (var item in Model)
                 {
                     var statusClass = item.EsteReturnat ? "table-success" : "table-warning";
-                    
+
                     <tr class="@statusClass">
                         <td>@item.Nume</td>
                         <td>@item.Prenume</td>
@@ -134,18 +135,29 @@
                         </td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a asp-action="Details" asp-route-id="@item.ImprumutId" class="btn btn-sm btn-info">Detalii</a>
-                                <a asp-action="Edit" asp-route-id="@item.ImprumutId" class="btn btn-sm btn-warning">Editare</a>
+                                <a asp-action="Details" asp-route-id="@item.ImprumutId" class="btn btn-sm btn-info">
+                                    <i class="fas fa-eye"></i> Detalii
+                                </a>
+                                <a asp-action="Edit" asp-route-id="@item.ImprumutId" class="btn btn-sm btn-warning">
+                                    <i class="fas fa-edit"></i> Editare
+                                </a>
                                 @if (!item.EsteReturnat)
                                 {
-                                    <form asp-action="Return" asp-route-id="@item.ImprumutId" method="post" style="display:inline;">
-                                        <button type="submit" class="btn btn-sm btn-success" 
-                                                onclick="return confirm('Confirmați returnarea cărții?')">
-                                            Returnează
+                                    <form asp-action="Return" asp-route-id="@item.ImprumutId" method="post" style="display: inline;" 
+                                        onsubmit="return confirm('Ești sigur că vrei să marchezi această carte ca returnată?');">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="fas fa-check"></i> Returnează
                                         </button>
                                     </form>
                                 }
-                                <a asp-action="Delete" asp-route-id="@item.ImprumutId" class="btn btn-sm btn-danger">Ștergere</a>
+                                <form asp-action="Delete" asp-route-id="@item.ImprumutId" method="post" style="display: inline;" 
+                                    onsubmit="return confirm('Ești sigur că vrei să ștergi definitiv acest împrumut? Această acțiune nu poate fi anulată.');">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i> Șterge
+                                    </button>
+                                </form>
                             </div>
                         </td>
                     </tr>
@@ -167,11 +179,9 @@
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             <li class="page-item @(Model.HasPreviousPage ? "" : "disabled")">
-                <a class="page-link" asp-action="Index" 
-                   asp-route-sortOrder="@ViewData["CurrentSort"]"
-                   asp-route-pageNumber="@(Model.PageIndex - 1)"
-                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                   asp-route-statusFilter="@ViewData["StatusFilter"]">
+                <a class="page-link" asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+                    asp-route-pageNumber="@(Model.PageIndex - 1)" asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                    asp-route-statusFilter="@ViewData["StatusFilter"]">
                     Anterior
                 </a>
             </li>
@@ -179,22 +189,18 @@
             @for (int i = Math.Max(1, Model.PageIndex - 2); i <= Math.Min(Model.TotalPages, Model.PageIndex + 2); i++)
             {
                 <li class="page-item @(i == Model.PageIndex ? "active" : "")">
-                    <a class="page-link" asp-action="Index" 
-                       asp-route-sortOrder="@ViewData["CurrentSort"]"
-                       asp-route-pageNumber="@i"
-                       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                       asp-route-statusFilter="@ViewData["StatusFilter"]">
+                    <a class="page-link" asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+                        asp-route-pageNumber="@i" asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                        asp-route-statusFilter="@ViewData["StatusFilter"]">
                         @i
                     </a>
                 </li>
             }
 
             <li class="page-item @(Model.HasNextPage ? "" : "disabled")">
-                <a class="page-link" asp-action="Index" 
-                   asp-route-sortOrder="@ViewData["CurrentSort"]"
-                   asp-route-pageNumber="@(Model.PageIndex + 1)"
-                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                   asp-route-statusFilter="@ViewData["StatusFilter"]">
+                <a class="page-link" asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+                    asp-route-pageNumber="@(Model.PageIndex + 1)" asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                    asp-route-statusFilter="@ViewData["StatusFilter"]">
                     Următor
                 </a>
             </li>

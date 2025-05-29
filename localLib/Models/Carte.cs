@@ -2,26 +2,20 @@
 {
     public class Carte
     {
-        public Carte()
-        {
-            Autori = new HashSet<CarteAutor>();
-            CarteCategorii = new HashSet<CarteCategorie>();
-        }
-
         public long CarteId { get; set; }
         public string? ISBN { get; set; }
         public string? ISSN { get; set; }
-        public string Cota { get; set; }
-        public string Titlu { get; set; }
-        public string TitluInfo { get; set; }
-        public string MentiuniResponsabilitate { get; set; }
-        public string Editie { get; set; }
+        public string Cota { get; set; } = default!;
+        public string Titlu { get; set; } = default!;
+        public string TitluInfo { get; set; } = default!;
+        public string MentiuniResponsabilitate { get; set; } = default!;
+        public string Editie { get; set; } = default!;
         public long EdituraId { get; set; }
         public Editura? Editura { get; set; }
         public DateTime DataPublicarii { get; set; }
-        public string LoculPublicarii { get; set; }
-        public string Bibliografie { get; set; }
-        public string Descriere { get; set; }
+        public string LoculPublicarii { get; set; } = default!;
+        public string Bibliografie { get; set; } = default!;
+        public string Descriere { get; set; } = default!;
         public int NrPagini { get; set; }
         public decimal Pret { get; set; }
         public long ZonaColectieId { get; set; }
@@ -31,10 +25,10 @@
         public long TaraId { get; set; }
         public Tara? Tara { get; set; }
         public long NumarInventar { get; set; }
-        public string Paginatie { get; set; }
-        public string Ilustratii { get; set; }
-        public string CopertaURL { get; set; }
-        public ICollection<CarteAutor> Autori { get; set; }
-        public ICollection<CarteCategorie> CarteCategorii { get; set; }
+        public string Paginatie { get; set; } = default!;
+        public string Ilustratii { get; set; } = default!;
+        public string? CopertaURL { get; set; }
+        public ICollection<CarteAutor> Autori { get; set; } = new HashSet<CarteAutor>();
+        public ICollection<CarteCategorie> CarteCategorii { get; set; } = new HashSet<CarteCategorie>();
     }
 }

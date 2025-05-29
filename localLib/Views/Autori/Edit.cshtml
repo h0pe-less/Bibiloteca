@@ -1,0 +1,91 @@
+@model localLib.Models.Autor
+
+@{
+    ViewData["Title"] = "Editează Autor";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Editează Autor</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5>Informații Autor</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="AutorId" />
+                    
+                    <div class="form-group mb-3">
+                        <label asp-for="NumePrenume" class="control-label"></label>
+                        <input asp-for="NumePrenume" class="form-control" />
+                        <span asp-validation-for="NumePrenume" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label asp-for="DataNasterii" class="control-label"></label>
+                        <input asp-for="DataNasterii" class="form-control" type="date" />
+                        <span asp-validation-for="DataNasterii" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-group mb-3">
+                        <label asp-for="Biografie" class="control-label"></label>
+                        <textarea asp-for="Biografie" class="form-control" rows="6"></textarea>
+                        <span asp-validation-for="Biografie" class="text-danger"></span>
+                        <small class="form-text text-muted">Descrierea poate conține maxim 1000 de caractere.</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="submit" value="Salvează modificările" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-outline-secondary">Înapoi la listă</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Informații suplimentare</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>ID Autor:</strong> @Model.AutorId</p>
+                <p><strong>Numărul de cărți:</strong> @Model.CartiAutor?.Count</p>
+                
+                @if (Model.CartiAutor?.Any() == true)
+                {
+                    <hr>
+                    <h6>Cărți asociate:</h6>
+                    <ul class="list-unstyled">
+                        @foreach (var carteAutor in Model.CartiAutor.Take(5))
+                        {
+                            <li><small><i class="fas fa-book"></i> @carteAutor.Carte?.Titlu</small></li>
+                        }
+                        @if (Model.CartiAutor.Count > 5)
+                        {
+                            <li><small class="text-muted">... și încă @(Model.CartiAutor.Count - 5) cărți</small></li>
+                        }
+                    </ul>
+                }
+                
+                <hr>
+                <div class="d-grid gap-2">
+                    <form asp-action="Delete" asp-route-id="@Model.AutorId" method="post" class="mt-2"
+                          onsubmit="return confirm('Ești sigur că vrei să ștergi definitiv acest autor? Această acțiune nu poate fi anulată.');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger btn-block">
+                            <i class="fas fa-trash"></i> Șterge autor
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,140 @@
+@model localLib.Models.Editura
+
+@{
+    ViewData["Title"] = "Detalii Editură";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Detalii Editură</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Denumire)</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => model.Denumire)</dd>
+
+                    <dt class="col-sm-3">Numărul de cărți</dt>
+                    <dd class="col-sm-9">
+                        <span class="badge badge-primary text-dark">@Model.Carti?.Count cărți publicate</span>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        @if (Model.Carti?.Any() == true)
+        {
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5>Cărți publicate de această editură</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Titlu</th>
+                                    <th>Autori</th>
+                                    <th>Zonă Colecție</th>
+                                    <th>An publicare</th>
+                                    <th>Acțiuni</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var carte in Model.Carti.OrderBy(c => c.Titlu))
+                                {
+                                    <tr>
+                                        <td>@carte.Titlu</td>
+                                        <td>
+                                            @if (carte.Autori?.Any() == true)
+                                            {
+                                                @string.Join(", ", carte.Autori.Select(a => a.Autor?.NumePrenume))
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted">-</span>
+                                            }
+                                        </td>
+                                        <td>@carte.ZonaColectie?.DenumireZona</td>
+                                        <td>@carte.DataPublicarii.Year</td>
+                                        <td>
+                                            <a asp-controller="Book" asp-action="Details" asp-route-id="@carte.CarteId" class="btn btn-sm btn-outline-info">
+                                                Vezi carte
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Statistici</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>ID:</strong> @Model.EdituraId</p>
+                <p><strong>Numărul total de cărți:</strong> @Model.Carti?.Count</p>
+                
+                @if (Model.Carti?.Any() == true)
+                {
+                    var totalAutori = Model.Carti.SelectMany(c => c.Autori).Select(a => a.AutorId).Distinct().Count();
+                    var zoneColectie = Model.Carti.Where(c => c.ZonaColectie != null).Select(c => c.ZonaColectie.DenumireZona).Distinct().Count();
+                    
+                    <p><strong>Autori diferiți:</strong> @totalAutori</p>
+                    <p><strong>Zone de colecție:</strong> @zoneColectie</p>
+                    
+                    var carteMaiVeche = Model.Carti.OrderBy(c => c.DataPublicarii).FirstOrDefault();
+                    var carteMaiNoua = Model.Carti.OrderByDescending(c => c.DataPublicarii).FirstOrDefault();
+                    
+                    if (carteMaiVeche != null && carteMaiNoua != null)
+                    {
+                        <p><strong>Prima carte publicată:</strong> @carteMaiVeche.DataPublicarii.Year</p>
+                        <p><strong>Ultima carte publicată:</strong> @carteMaiNoua.DataPublicarii.Year</p>
+                    }
+
+                    var pretMediu = Model.Carti.Where(c => c.Pret > 0).Average(c => c.Pret);
+                    if (pretMediu > 0)
+                    {
+                        <p><strong>Preț mediu:</strong> @pretMediu.ToString("F2") RON</p>
+                    }
+                }
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5>Acțiuni rapide</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a asp-action="Edit" asp-route-id="@Model.EdituraId" class="btn btn-primary btn-block">
+                        <i class="fas fa-edit"></i> Editează editură
+                    </a>
+                    <a asp-controller="Book" asp-action="Create" class="btn btn-success btn-block">
+                        <i class="fas fa-plus"></i> Adaugă carte nouă
+                    </a>
+                    <form asp-action="Delete" asp-route-id="@Model.EdituraId" method="post" 
+                          onsubmit="return confirm('Ești sigur că vrei să ștergi definitiv această editură? Această acțiune nu poate fi anulată.');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger btn-block">
+                            <i class="fas fa-trash"></i> Șterge editură
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Înapoi la listă
+    </a>
+</div>

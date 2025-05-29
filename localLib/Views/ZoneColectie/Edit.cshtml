@@ -1,0 +1,79 @@
+@model localLib.Models.ZonaColectie
+
+@{
+    ViewData["Title"] = "Editează Zonă Colecție";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Editează Zonă Colecție</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5>Informații Zonă Colecție</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="ZonaColectieId" />
+                    
+                    <div class="form-group mb-3">
+                        <label asp-for="DenumireZona" class="control-label"></label>
+                        <input asp-for="DenumireZona" class="form-control" />
+                        <span asp-validation-for="DenumireZona" class="text-danger"></span>
+                        <small class="form-text text-muted">Denumirea zonei de colecție unde vor fi plasate cărțile.</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="submit" value="Salvează modificările" class="btn btn-primary" />
+                        <a asp-action="Index" class="btn btn-outline-secondary">Înapoi la listă</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5>Informații suplimentare</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>ID Zonă:</strong> @Model.ZonaColectieId</p>
+                <p><strong>Numărul de cărți:</strong> @Model.Carti?.Count</p>
+                
+                @if (Model.Carti?.Any() == true)
+                {
+                    <hr>
+                    <h6>Exemple de cărți în această zonă:</h6>
+                    <ul class="list-unstyled">
+                        @foreach (var carte in Model.Carti.Take(5))
+                        {
+                            <li><small><i class="fas fa-book"></i> @carte.Titlu</small></li>
+                        }
+                        @if (Model.Carti.Count > 5)
+                        {
+                            <li><small class="text-muted">... și încă @(Model.Carti.Count - 5) cărți</small></li>
+                        }
+                    </ul>
+                }
+                
+                <hr>
+                <div class="d-grid gap-2">
+                    <form asp-action="Delete" asp-route-id="@Model.ZonaColectieId" method="post" class="mt-2"
+                          onsubmit="return confirm('Ești sigur că vrei să ștergi definitiv această zonă de colecție? Această acțiune nu poate fi anulată.');">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger btn-block">
+                            <i class="fas fa-trash"></i> Șterge zonă
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
