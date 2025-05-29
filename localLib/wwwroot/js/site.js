@@ -37,8 +37,39 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // showing selected authors
 $(document).ready(function () {
+    // Initialize arrays to track selections
     const selectedAuthors = [];
+    const selectedCategories = [];
 
+    // Load any existing selections (for validation failures)
+    const initialAuthors = $('#selectedAuthorIds').val();
+    const initialCategories = $('#selectedCategoryIds').val();
+
+    if (initialAuthors) {
+        initialAuthors.split(',').forEach(id => {
+            if (id && !selectedAuthors.includes(id)) {
+                selectedAuthors.push(id);
+                const option = $(`#authorComboBox option[value="${id}"]`);
+                if (option.length) {
+                    addAuthorBadge(id, option.text());
+                }
+            }
+        });
+    }
+
+    if (initialCategories) {
+        initialCategories.split(',').forEach(id => {
+            if (id && !selectedCategories.includes(id)) {
+                selectedCategories.push(id);
+                const option = $(`#categoryComboBox option[value="${id}"]`);
+                if (option.length) {
+                    addCategoryBadge(id, option.text());
+                }
+            }
+        });
+    }
+
+    // Author functions
     $('#addAuthorBtn').click(function () {
         const comboBox = $('#authorComboBox');
         const authorId = comboBox.val();
@@ -46,36 +77,12 @@ $(document).ready(function () {
 
         if (authorId && !selectedAuthors.includes(authorId)) {
             selectedAuthors.push(authorId);
-
-            // Add to display
-            $('#selectedAuthorsContainer').append(`
-                <div class="selected-author badge badge-primary mr-2 mb-2" data-id="${authorId}">
-                    ${authorName}
-                    <button type="button" class="close ml-2" aria-label="Remove">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            `);
-
-            // Update hidden field
-            $('#selectedAuthors').val(selectedAuthors.join(','));
+            addAuthorBadge(authorId, authorName);
+            updateAuthorHiddenField();
         }
     });
 
-    // Remove author when X is clicked
-    $(document).on('click', '.selected-author .close', function () {
-        const badge = $(this).closest('.selected-author');
-        const authorId = badge.data('id');
-
-        selectedAuthors.splice(selectedAuthors.indexOf(authorId), 1);
-        badge.remove();
-        $('#selectedAuthors').val(selectedAuthors.join(','));
-    });
-});
-
-$(document).ready(function () {
-    const selectedCategories = [];
-
+    // Category functions
     $('#addCategoryBtn').click(function () {
         const comboBox = $('#categoryComboBox');
         const categoryId = comboBox.val();
@@ -83,29 +90,65 @@ $(document).ready(function () {
 
         if (categoryId && !selectedCategories.includes(categoryId)) {
             selectedCategories.push(categoryId);
-
-            // Add to display
-            $('#selectedCategoriesContainer').append(`
-                <div class="selected-category badge badge-primary mr-2 mb-2" data-id="${categoryId}">
-                    ${categoryName}
-                    <button type="button" class="close ml-2" aria-label="Remove">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            `);
-
-            // Update hidden field
-            $('#selectedCategories').val(selectedCategories.join(','));
+            addCategoryBadge(categoryId, categoryName);
+            updateCategoryHiddenField();
         }
     });
 
-    // Remove author when X is clicked
+    // Remove handlers
+    $(document).on('click', '.selected-author .close', function () {
+        const badge = $(this).closest('.selected-author');
+        const authorId = badge.data('id');
+
+        selectedAuthors.splice(selectedAuthors.indexOf(authorId), 1);
+        badge.remove();
+        updateAuthorHiddenField();
+    });
+
     $(document).on('click', '.selected-category .close', function () {
         const badge = $(this).closest('.selected-category');
         const categoryId = badge.data('id');
 
         selectedCategories.splice(selectedCategories.indexOf(categoryId), 1);
         badge.remove();
-        $('#selectedCategories').val(selectedCategories.join(','));
+        updateCategoryHiddenField();
+    });
+
+    // Helper functions
+    function addAuthorBadge(id, name) {
+        $('#selectedAuthorsContainer').append(`
+            <div class="selected-author badge badge-primary mr-2 mb-2" data-id="${id}">
+                ${name}
+                <button type="button" class="close ml-2" aria-label="Remove">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        `);
+    }
+
+    function addCategoryBadge(id, name) {
+        $('#selectedCategoriesContainer').append(`
+            <div class="selected-category badge badge-secondary mr-2 mb-2" data-id="${id}">
+                ${name}
+                <button type="button" class="close ml-2" aria-label="Remove">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        `);
+    }
+
+    function updateAuthorHiddenField() {
+        $('#selectedAuthorIds').val(selectedAuthors.join(','));
+    }
+
+    function updateCategoryHiddenField() {
+        $('#selectedCategoryIds').val(selectedCategories.join(','));
+    }
+
+    // Ensure fields are updated before form submission
+    $('#bookForm').submit(function () {
+        updateAuthorHiddenField();
+        updateCategoryHiddenField();
+        return true;
     });
 });

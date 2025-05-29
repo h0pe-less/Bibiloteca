@@ -1,33 +1,39 @@
-@model localLib.Models.Book
+﻿@model localLib.Models.Carte
 
 @{
     ViewData["Title"] = "Delete Book";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Delete Book</h1>
+<h1>Stegere </h1>
 
-<h3>Are you sure you want to delete this book?</h3>
+<h3>Sigur doriti sa stergeti aceasta carte?</h3>
 <div>
     <dl class="row">
-        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Title)</dt>
-        <dd class="col-sm-9">@Html.DisplayFor(model => model.Title)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Titlu)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Titlu)</dd>
 
-        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Author)</dt>
-        <dd class="col-sm-9">@Html.DisplayFor(model => model.Author)</dd>
-
-        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Genre)</dt>
-        <dd class="col-sm-9">@Html.DisplayFor(model => model.Genre.Name)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.TitluInfo)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.TitluInfo)</dd>
 
         <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ISBN)</dt>
         <dd class="col-sm-9">@Html.DisplayFor(model => model.ISBN)</dd>
 
-        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.AvailableCopies)</dt>
-        <dd class="col-sm-9">@Html.DisplayFor(model => model.AvailableCopies)</dd>
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.ISSN)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.ISSN)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Cota)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Cota)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Editie)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Editie)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.NumarInventar)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.NumarInventar)</dd>
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="CarteId" />
         <input type="submit" value="Delete" class="btn btn-danger" />
         <a asp-action="Index" class="btn btn-secondary">Back to List</a>
     </form>
