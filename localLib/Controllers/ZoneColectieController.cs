@@ -7,7 +7,7 @@ using FluentValidation;
 
 namespace localLib.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     [Route("Admin/[controller]")]
     public class ZoneColectieController : Controller
     {
@@ -41,16 +41,13 @@ namespace localLib.Controllers
             var zoneColectie = from z in _context.ZoneColectie.Include(z => z.Carti)
                               select z;
 
-            // Get total count for display
             ViewBag.TotalCount = await zoneColectie.CountAsync();
 
-            // Search functionality
             if (!String.IsNullOrEmpty(searchString))
             {
                 zoneColectie = zoneColectie.Where(z => z.DenumireZona.Contains(searchString));
             }
 
-            // Sorting
             switch (sortOrder)
             {
                 case "denumire_desc":
@@ -81,7 +78,6 @@ namespace localLib.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ZonaColectieId,DenumireZona")] ZonaColectie zonaColectie)
         {
-            // Use FluentValidation
             var validationResult = await _validator.ValidateAsync(zonaColectie);
             
             if (!validationResult.IsValid)
@@ -156,7 +152,6 @@ namespace localLib.Controllers
                 return NotFound();
             }
 
-            // Use FluentValidation
             var validationResult = await _validator.ValidateAsync(zonaColectie);
             
             if (!validationResult.IsValid)
@@ -189,7 +184,6 @@ namespace localLib.Controllers
                 return RedirectToAction(nameof(Details), new { id = zonaColectie.ZonaColectieId });
             }
 
-            // Reload related data if validation fails
             zonaColectie = await _context.ZoneColectie
                 .Include(z => z.Carti)
                 .FirstOrDefaultAsync(z => z.ZonaColectieId == id);
@@ -210,7 +204,6 @@ namespace localLib.Controllers
                 return NotFound();
             }
 
-            // Check if zone has associated books
             if (zonaColectie.Carti?.Any() == true)
             {
                 TempData["ErrorMessage"] = "Nu se poate șterge zona de colecție deoarece are cărți asociate. Mutați mai întâi cărțile în altă zonă.";

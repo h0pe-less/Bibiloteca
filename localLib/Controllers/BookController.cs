@@ -10,6 +10,8 @@ using FluentValidation;
 
 namespace localLib.Controllers;
 
+    [Authorize(Roles = "Admin")]
+    [Route("Admin/[controller]")]
 public class BookController : Controller
 {
     private readonly ILogger<BookController> _logger;
@@ -22,7 +24,7 @@ public class BookController : Controller
         _logger = logger;
     }
 
-    [Route("Admin/Book")]
+    [HttpGet]
     public async Task<IActionResult> Index(
         string sortOrder,
         string currentFilter,
@@ -107,16 +109,8 @@ public class BookController : Controller
         return View();
     }
 
-    //[Authorize (Roles = "Admin")] 
-    //[Route("Admin/Book")]
-    //public IActionResult Admin()
-    //{
-    //    return View("Index");
-    //}
 
-    [HttpGet]
-    [Route("Admin/Book/Create")]
-    //[Authorize(Roles = "Admin")]
+    [HttpGet("Create")]
     public IActionResult Create()
     {
         ViewData["EdituraId"] = new SelectList(_context.Edituri, "EdituraId", "Denumire");
@@ -128,10 +122,8 @@ public class BookController : Controller
 
         return View();
     }
-    [HttpPost]
+    [HttpPost("Create")]
     [ValidateAntiForgeryToken]
-    [Route("Admin/Book/Create")]
-    //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create([Bind("CarteId,ISBN,ISSN,Cota,Titlu,TitluInfo,MentiuniResponsabilitate,Editie,EdituraId,DataPublicarii,LoculPublicarii,Bibliografie,Descriere,NrPagini,Pret,ZonaColectieId,LimbaId,TaraId,NumarInventar,Paginatie,Ilustratii,CopertaURL")] Carte carte,
                                      string selectedAuthorIds,
                                      string selectedCategoryIds)
@@ -173,7 +165,7 @@ public class BookController : Controller
         return View(carte);
     }
 
-    [Route("Admin/Book/Details/{id}")]
+    [HttpGet("Details/{id}")]
     public async Task<IActionResult> Details(long? id)
     {
         if (id == null)
@@ -200,8 +192,7 @@ public class BookController : Controller
         return View(carte);
     }
 
-    [HttpGet]
-    [Route("Admin/Book/Edit/{id}")]
+    [HttpGet("Edit/{id}")]
     public async Task<IActionResult> Edit(long? id)
     {
         if (id == null)
@@ -235,9 +226,8 @@ public class BookController : Controller
         return View(carte);
     }
 
-    [HttpPost]
+    [HttpPost("Edit/{id}")]
     [ValidateAntiForgeryToken]
-    [Route("Admin/Book/Edit/{id}")]
     public async Task<IActionResult> Edit(long id,
     [Bind("CarteId,ISBN,ISSN,Cota,Titlu,TitluInfo,MentiuniResponsabilitate,Editie,EdituraId,DataPublicarii,LoculPublicarii,Bibliografie,Descriere,NrPagini,Pret,ZonaColectieId,LimbaId,TaraId,NumarInventar,Paginatie,Ilustratii,CopertaURL")] Carte carte,
     string selectedAuthorIds,
@@ -313,8 +303,7 @@ public class BookController : Controller
         return _context.Carti.Any(e => e.CarteId == id);
     }
 
-    [HttpGet]
-    [Route("Admin/Book/Delete/{id}")]
+    [HttpGet("Details/{id}")]
     public async Task<IActionResult> Delete(long? id)
     {
         if (id == null)
@@ -337,9 +326,8 @@ public class BookController : Controller
         return View(carte);
     }
 
-    [HttpPost, ActionName("Delete")]
+    [HttpPost("Delete/{id}")]
     [ValidateAntiForgeryToken]
-    [Route("Admin/Book/Delete/{id}")]
     public async Task<IActionResult> DeleteConfirmed(long id)
     {
         var carte = await _context.Carti

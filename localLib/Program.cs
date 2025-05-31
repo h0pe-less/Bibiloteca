@@ -5,6 +5,10 @@ using localLib.Validators;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using localLib.Services;
 
 namespace localLib
 {
@@ -15,7 +19,6 @@ namespace localLib
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddMvc().AddRazorRuntimeCompilation();
 
-            // Add services to the container.
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddFluentValidationAutoValidation();
@@ -24,32 +27,15 @@ namespace localLib
             builder.Services.AddValidatorsFromAssemblyContaining<AutorValidator>();
             builder.Services.AddValidatorsFromAssemblyContaining<ZonaColectieValidator>();
             builder.Services.AddValidatorsFromAssemblyContaining<EdituraValidator>();
-
+            builder.Services.AddValidatorsFromAssemblyContaining<CategorieValidator>();
 
             builder.Services.AddDbContext<BibliotecaContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("BibliotecaConnection")));
 
-            // Add Identity services
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => 
-            {
-                // Password settings
-                options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireNonAlphanumeric = true;
-                options.Password.RequireUppercase = true;
-                options.Password.RequiredLength = 6;
-                
-                // Lockout settings
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
-                options.Lockout.MaxFailedAccessAttempts = 5;
-                
-                // User settings
-                options.User.RequireUniqueEmail = true;
-            })
-            .AddEntityFrameworkStores<BibliotecaContext>()
-            .AddDefaultTokenProviders();
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<BibliotecaContext>()
+                .AddDefaultTokenProviders();
 
-            // Configure cookie settings
             builder.Services.ConfigureApplicationCookie(options =>
             {
                 options.Cookie.HttpOnly = true;
@@ -60,7 +46,83 @@ namespace localLib
                 options.SlidingExpiration = true;
             });
 
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = "MultiScheme";
+                options.DefaultChallengeScheme = "MultiScheme";
+                options.DefaultScheme = "MultiScheme";
+            })
+            .AddJwtBearer(options =>
+            {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = false;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = builder.Configuration["JWT:Issuer"],
+                    ValidAudience = builder.Configuration["JWT:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
+                };
+                options.Events = new JwtBearerEvents
+                {
+                    OnChallenge = context =>
+                    {
+                        context.Response.Redirect("/Account/Login");
+                        context.HandleResponse();
+                        return Task.CompletedTask;
+                    },
+                    OnForbidden = context =>
+                    {
+                        context.Response.Redirect("/Account/AccessDenied");
+                        return Task.CompletedTask;
+                    },
+                    OnMessageReceived = context =>
+                    {
+                        if (context.Request.Cookies.ContainsKey("jwt_token"))
+                        {
+                            context.Token = context.Request.Cookies["jwt_token"];
+                        }
+                        return Task.CompletedTask;
+                    }
+                };
+            })
+            .AddPolicyScheme("MultiScheme", "Multi-Auth", options =>
+            {
+                options.ForwardDefaultSelector = context =>
+                {
+                    if (context.Request.Cookies.ContainsKey("jwt_token"))
+                    {
+                        return JwtBearerDefaults.AuthenticationScheme;
+                    }
+                    
+                    return IdentityConstants.ApplicationScheme;
+                };
+            });
+
+            builder.Services.AddScoped<JwtService>();
+
             var app = builder.Build();
+
+            if (!app.Environment.IsDevelopment())
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+            }
+
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+            app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             using (var scope = app.Services.CreateScope())
             {
@@ -75,26 +137,6 @@ namespace localLib
                     logger.LogError(ex, "An error occurred while seeding the database.");
                 }
             }
-
-            // Configure the HTTP request pipeline.
-            if (!app.Environment.IsDevelopment())
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
-            app.MapControllers();
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }

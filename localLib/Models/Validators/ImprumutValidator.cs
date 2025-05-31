@@ -36,23 +36,19 @@ namespace localLib.Validators
                 .NotEmpty().WithMessage("Cartea este obligatorie")
                 .GreaterThan(0).WithMessage("Trebuie să selectați o carte validă");
 
-            // Custom rule to ensure DataReturnare is set when EsteReturnat is true
             RuleFor(x => x.DataReturnare)
                 .NotNull().WithMessage("Data returnării este obligatorie când cartea este marcată ca returnată")
                 .When(x => x.EsteReturnat);
 
-            // Custom rule to ensure EsteReturnat is true when DataReturnare is set
             RuleFor(x => x.EsteReturnat)
                 .Equal(true).WithMessage("Cartea trebuie să fie marcată ca returnată când data returnării este setată")
                 .When(x => x.DataReturnare.HasValue);
 
-            // Business rule: ensure the book return period is reasonable (e.g., max 1 year)
             RuleFor(x => x.DataReturnare)
                 .LessThanOrEqualTo(x => x.DataImprumut.AddYears(1))
                 .WithMessage("Perioada de împrumut nu poate depăși un an")
                 .When(x => x.DataReturnare.HasValue);
 
-            // Ensure DataReturnare is not in the future
             RuleFor(x => x.DataReturnare)
                 .LessThanOrEqualTo(DateTime.Now)
                 .WithMessage("Data returnării nu poate fi în viitor")

@@ -7,7 +7,7 @@ using FluentValidation;
 
 namespace localLib.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     [Route("Admin/[controller]")]
     public class CategoriiController : Controller
     {
@@ -41,17 +41,14 @@ namespace localLib.Controllers
             var categorii = from c in _context.Categorii.Include(c => c.CartiCategorii)
                            select c;
 
-            // Get total count for display
             ViewBag.TotalCount = await categorii.CountAsync();
 
-            // Search functionality
             if (!String.IsNullOrEmpty(searchString))
             {
                 categorii = categorii.Where(c => c.Denumire.Contains(searchString) 
                                               || c.Descriere.Contains(searchString));
             }
 
-            // Sorting
             switch (sortOrder)
             {
                 case "denumire_desc":
@@ -82,7 +79,6 @@ namespace localLib.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CategorieId,Denumire,Descriere")] Categorie categorie)
         {
-            // Use FluentValidation
             var validationResult = await _validator.ValidateAsync(categorie);
             
             if (!validationResult.IsValid)
@@ -160,7 +156,6 @@ namespace localLib.Controllers
                 return NotFound();
             }
 
-            // Use FluentValidation
             var validationResult = await _validator.ValidateAsync(categorie);
             
             if (!validationResult.IsValid)
@@ -193,7 +188,6 @@ namespace localLib.Controllers
                 return RedirectToAction(nameof(Details), new { id = categorie.CategorieId });
             }
 
-            // Reload related data if validation fails
             categorie = await _context.Categorii
                 .Include(c => c.CartiCategorii)
                 .ThenInclude(cc => cc.Carte)
@@ -215,7 +209,6 @@ namespace localLib.Controllers
                 return NotFound();
             }
 
-            // Check if category has associated books
             if (categorie.CartiCategorii?.Any() == true)
             {
                 TempData["ErrorMessage"] = "Nu se poate șterge categoria deoarece are cărți asociate. Eliminați mai întâi cărțile din această categorie.";

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace localLib.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     [Route("Admin/[controller]")]
     public class ImprumuturiController : Controller
     {
@@ -45,10 +45,8 @@ namespace localLib.Controllers
             var imprumuturi = from i in _context.Imprumuturi.Include(i => i.Carte)
                               select i;
 
-            // Get total count for display
             ViewBag.TotalCount = await imprumuturi.CountAsync();
 
-            // Search functionality
             if (!String.IsNullOrEmpty(searchString))
             {
                 imprumuturi = imprumuturi.Where(i => i.Nume.Contains(searchString)
@@ -57,7 +55,6 @@ namespace localLib.Controllers
                                                || i.Carte.Titlu.Contains(searchString));
             }
 
-            // Status filter
             if (!String.IsNullOrEmpty(statusFilter))
             {
                 switch (statusFilter.ToLower())
@@ -74,7 +71,6 @@ namespace localLib.Controllers
                 }
             }
 
-            // Sorting
             switch (sortOrder)
             {
                 case "nume_desc":

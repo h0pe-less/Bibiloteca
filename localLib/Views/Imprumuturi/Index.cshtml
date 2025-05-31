@@ -126,19 +126,19 @@
                         <td>
                             @if (item.EsteReturnat)
                             {
-                                <span class="badge badge-success">Returnat</span>
+                                <span class="badge badge-success text-dark">Returnat</span>
                             }
                             else
                             {
-                                <span class="badge badge-warning">Împrumutat</span>
+                                <span class="badge badge-warning text-dark">Împrumutat</span>
                             }
                         </td>
                         <td>
-                            <div class="btn-group" role="group">
-                                <a asp-action="Details" asp-route-id="@item.ImprumutId" class="btn btn-sm btn-info">
+                            <div class="form-group" role="group">
+                                <a asp-action="Details" asp-route-id="@item.ImprumutId" class="btn  btn-sm btn-info">
                                     <i class="fas fa-eye"></i> Detalii
                                 </a>
-                                <a asp-action="Edit" asp-route-id="@item.ImprumutId" class="btn btn-sm btn-warning">
+                                <a asp-action="Edit" asp-route-id="@item.ImprumutId" class="btn  btn-sm btn-warning">
                                     <i class="fas fa-edit"></i> Editare
                                 </a>
                                 @if (!item.EsteReturnat)
@@ -146,7 +146,7 @@
                                     <form asp-action="Return" asp-route-id="@item.ImprumutId" method="post" style="display: inline;" 
                                         onsubmit="return confirm('Ești sigur că vrei să marchezi această carte ca returnată?');">
                                         @Html.AntiForgeryToken()
-                                        <button type="submit" class="btn btn-success btn-sm">
+                                        <button type="submit" class="btn  btn-success btn-sm">
                                             <i class="fas fa-check"></i> Returnează
                                         </button>
                                     </form>
@@ -154,7 +154,7 @@
                                 <form asp-action="Delete" asp-route-id="@item.ImprumutId" method="post" style="display: inline;" 
                                     onsubmit="return confirm('Ești sigur că vrei să ștergi definitiv acest împrumut? Această acțiune nu poate fi anulată.');">
                                     @Html.AntiForgeryToken()
-                                    <button type="submit" class="btn btn-danger btn-sm">
+                                    <button type="submit" class="btn  btn-danger btn-sm">
                                         <i class="fas fa-trash"></i> Șterge
                                     </button>
                                 </form>

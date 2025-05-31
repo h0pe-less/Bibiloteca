@@ -1,9 +1,11 @@
 ﻿using localLib.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace localLib.Data
 {
-    public class BibliotecaContext : DbContext
+    public class BibliotecaContext : IdentityDbContext<IdentityUser>
     {
         public BibliotecaContext(DbContextOptions<BibliotecaContext> options)
             : base(options)
@@ -24,6 +26,8 @@ namespace localLib.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            
             modelBuilder.Entity<CarteAutor>()
                 .HasKey(ca => new { ca.CarteId, ca.AutorId });
 

@@ -14,18 +14,14 @@ namespace localLib.Data
 
             context.Database.EnsureCreated();
 
-            // Check if roles already exist
             if (!await roleManager.RoleExistsAsync("Admin"))
             {
-                // Create Admin role
                 await roleManager.CreateAsync(new IdentityRole("Admin"));
             }
 
-            // Check if admin user exists
             var adminUser = await userManager.FindByEmailAsync("admin@locallib.com");
             if (adminUser == null)
             {
-                // Create admin user
                 adminUser = new IdentityUser
                 {
                     UserName = "admin@locallib.com",
@@ -33,15 +29,13 @@ namespace localLib.Data
                     EmailConfirmed = true
                 };
 
-                var result = await userManager.CreateAsync(adminUser, "Admin123!");
+                var result = await userManager.CreateAsync(adminUser, "Admin@123");
                 if (result.Succeeded)
                 {
-                    // Add admin user to Admin role
                     await userManager.AddToRoleAsync(adminUser, "Admin");
                 }
             }
 
-            // Your existing initialization code
             Initialize(context);
         }
 
@@ -51,10 +45,9 @@ namespace localLib.Data
 
             if (context.Carti.Any())
             {
-                return; // DB has been seeded
+                return;
             }
 
-            // Seed Tari (Countries)
             var tari = new Tara[]
             {
                 new Tara{DenumireTara="România"},
@@ -67,7 +60,6 @@ namespace localLib.Data
             }
             context.SaveChanges();
 
-            // Seed Limbi (Languages)
             var limbi = new Limba[]
             {
                 new Limba{DenumireLimba="Română"},
@@ -80,7 +72,6 @@ namespace localLib.Data
             }
             context.SaveChanges();
 
-            // Seed Edituri (Publishers)
             var edituri = new Editura[]
             {
                 new Editura{Denumire="Humanitas"},
@@ -93,7 +84,6 @@ namespace localLib.Data
             }
             context.SaveChanges();
 
-            // Seed ZoneColectie (Collection Zones)
             var zone = new ZonaColectie[]
             {
                 new ZonaColectie{DenumireZona="Literatură română"},
@@ -106,7 +96,6 @@ namespace localLib.Data
             }
             context.SaveChanges();
 
-            // Seed Categorii (Categories)
             var categorii = new Categorie[]
             {
                 new Categorie{Denumire="Roman", Descriere="Opere literare în proză"},
@@ -119,7 +108,6 @@ namespace localLib.Data
             }
             context.SaveChanges();
 
-            // Seed Autori (Authors)
             var autori = new Autor[]
             {
                 new Autor{
@@ -144,7 +132,6 @@ namespace localLib.Data
             }
             context.SaveChanges();
 
-            // Seed Carti (Books)
             var carti = new Carte[]
             {
                 new Carte{
@@ -210,7 +197,7 @@ namespace localLib.Data
                     CopertaURL="https://example.com/orbitor.jpg",
                     Editie = "Editia 1",
                     Paginatie = "1-512",
-                    Ilustratii = "Da", // Add this
+                    Ilustratii = "Da",
                     TitluInfo = "Orbitor - Trilogia",
                     MentiuniResponsabilitate = "Această carte conține poeziile celebre ale lui Mihai Eminescu, inclusiv 'Luceafărul' și 'Scrisoarea III'.",
                     ISSN = "2",
@@ -223,7 +210,6 @@ namespace localLib.Data
             }
             context.SaveChanges();
 
-            // Seed Book-Author relationships
             var carteAutori = new CarteAutor[]
             {
                 new CarteAutor{CarteId=carti[0].CarteId, AutorId=autori[0].AutorId},
@@ -236,7 +222,6 @@ namespace localLib.Data
             }
             context.SaveChanges();
 
-            // Seed Book-Category relationships
             var carteCategorii = new CarteCategorie[]
             {
                 new CarteCategorie{CarteId=carti[0].CarteId, CategorieId=categorii[0].CategorieId},
@@ -249,13 +234,12 @@ namespace localLib.Data
             }
             context.SaveChanges();
 
-            // Seed Users
             var users = new User[]
             {
                 new User{
                     NumeUtilizator="admin",
                     Email="admin@biblioteca.ro",
-                    Parola="parola123", // Note: Store hashed passwords in production!
+                    Parola="parola123",
                     NumePrenume="Administrator Sistem",
                     Rol=Rol.Administrator
                 },

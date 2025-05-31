@@ -1,0 +1,81 @@
+@model localLib.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Autentificare";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow border-0 rounded-3">
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h3 class="mb-0">Autentificare Bibliotecă</h3>
+                </div>
+                <div class="card-body p-5">
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        </div>
+                    }
+
+                    <form asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                        <div class="form-floating mb-4">
+                            <input asp-for="Email" class="form-control" placeholder="nume@exemplu.com" />
+                            <label asp-for="Email">Adresă Email</label>
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+                        
+                        <div class="form-floating mb-4">
+                            <input asp-for="Password" class="form-control" placeholder="Parolă" />
+                            <label asp-for="Password">Parolă</label>
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>Conectare
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #sidebar {
+        display: none;
+    }
+    
+    #content {
+        width: 100%;
+        padding: 0 !important;
+        margin: 0;
+    }
+    
+    body {
+        background-color: #f8f9fa;
+    }
+    
+    .card {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    .form-floating label {
+        color: #6c757d;
+    }
+    
+    .card-header {
+        border-bottom: 0;
+    }
+    
+    .card-footer {
+        border-top: 0;
+    }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

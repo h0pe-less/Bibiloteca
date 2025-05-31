@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "+JtEJ6YE7A2nh1/Eby2X4B7ezmw9IxKoXLaS0e7paTw=",
+  "Hash": "b7yb1O3MPRNRYp3+Lvj++s5ikgjT1oUOQ3V0dg4V4O0=",
   "Source": "localLib",
   "BasePath": "_content/localLib",
   "Mode": "Default",
@@ -1674,6 +1674,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\searchicon.png"
+    },
+    {
+      "Identity": "D:\\Diploma\\Bibiloteca\\Bibiloteca\\localLib\\wwwroot\\js\\auth-handler.js",
+      "SourceId": "localLib",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Diploma\\Bibiloteca\\Bibiloteca\\localLib\\wwwroot\\",
+      "BasePath": "_content/localLib",
+      "RelativePath": "js/auth-handler#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "hkiaxi1axs",
+      "Integrity": "f6pMI3+GwM7Ye8I8h/J53soPMsrFm6yRyWWJ4BhDhbE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\auth-handler.js"
     },
     {
       "Identity": "D:\\Diploma\\Bibiloteca\\Bibiloteca\\localLib\\wwwroot\\js\\site.js",
@@ -6506,6 +6527,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-LAAuSx0XRBanROx18/uJvdwkmYCmQRXiXY5GWDVnMMI="
+        }
+      ]
+    },
+    {
+      "Route": "js/auth-handler.hkiaxi1axs.js",
+      "AssetFile": "D:\\Diploma\\Bibiloteca\\Bibiloteca\\localLib\\wwwroot\\js\\auth-handler.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "284"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"f6pMI3+GwM7Ye8I8h/J53soPMsrFm6yRyWWJ4BhDhbE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 13:08:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "hkiaxi1axs"
+        },
+        {
+          "Name": "label",
+          "Value": "js/auth-handler.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-f6pMI3+GwM7Ye8I8h/J53soPMsrFm6yRyWWJ4BhDhbE="
+        }
+      ]
+    },
+    {
+      "Route": "js/auth-handler.js",
+      "AssetFile": "D:\\Diploma\\Bibiloteca\\Bibiloteca\\localLib\\wwwroot\\js\\auth-handler.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "284"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"f6pMI3+GwM7Ye8I8h/J53soPMsrFm6yRyWWJ4BhDhbE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 31 May 2025 13:08:07 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-f6pMI3+GwM7Ye8I8h/J53soPMsrFm6yRyWWJ4BhDhbE="
         }
       ]
     },

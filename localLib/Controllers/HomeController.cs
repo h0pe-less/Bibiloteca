@@ -29,7 +29,7 @@ namespace localLib.Controllers
             return View();
         }
 
-        //[Authorize (Roles = "Admin")] 
+        [Authorize (Roles = "Admin")] 
         [Route("Admin")]
         public IActionResult Admin()
         {

@@ -73,6 +73,10 @@
       "PackagePath": "staticwebassets\\images\\searchicon.png"
     },
     {
+      "Id": "D:\\Diploma\\Bibiloteca\\Bibiloteca\\localLib\\wwwroot\\js\\auth-handler.js",
+      "PackagePath": "staticwebassets\\js\\auth-handler.js"
+    },
+    {
       "Id": "D:\\Diploma\\Bibiloteca\\Bibiloteca\\localLib\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "Acces Interzis";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6 text-center">
+            <div class="card shadow border-0">
+                <div class="card-body p-5">
+                    <div class="mb-4">
+                        <i class="bi bi-shield-lock text-danger" style="font-size: 5rem;"></i>
+                    </div>
+                    <h1 class="display-4 mb-3">Acces Interzis</h1>
+                    <p class="lead mb-4">Nu aveți permisiunea de a accesa această resursă.</p>
+                    <a class="btn btn-primary btn-lg" asp-controller="Home" asp-action="Index">
+                        <i class="bi bi-house-door me-2"></i>Înapoi la Pagina Principală
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #sidebar {
+        display: none;
+    }
+    
+    #content {
+        width: 100%;
+        padding: 0 !important;
+        margin: 0;
+    }
+    
+    body {
+        background-color: #f8f9fa;
+    }
+    
+    .card {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    }
+</style>

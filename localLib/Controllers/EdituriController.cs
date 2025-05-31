@@ -7,7 +7,7 @@ using FluentValidation;
 
 namespace localLib.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     [Route("Admin/[controller]")]
     public class EdituriController : Controller
     {
@@ -41,16 +41,13 @@ namespace localLib.Controllers
             var edituri = from e in _context.Edituri.Include(e => e.Carti)
                          select e;
 
-            // Get total count for display
             ViewBag.TotalCount = await edituri.CountAsync();
 
-            // Search functionality
             if (!String.IsNullOrEmpty(searchString))
             {
                 edituri = edituri.Where(e => e.Denumire.Contains(searchString));
             }
 
-            // Sorting
             switch (sortOrder)
             {
                 case "denumire_desc":
@@ -81,7 +78,6 @@ namespace localLib.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EdituraId,Denumire")] Editura editura)
         {
-            // Use FluentValidation
             var validationResult = await _validator.ValidateAsync(editura);
             
             if (!validationResult.IsValid)
@@ -156,7 +152,6 @@ namespace localLib.Controllers
                 return NotFound();
             }
 
-            // Use FluentValidation
             var validationResult = await _validator.ValidateAsync(editura);
             
             if (!validationResult.IsValid)
@@ -189,7 +184,6 @@ namespace localLib.Controllers
                 return RedirectToAction(nameof(Details), new { id = editura.EdituraId });
             }
 
-            // Reload related data if validation fails
             editura = await _context.Edituri
                 .Include(e => e.Carti)
                 .FirstOrDefaultAsync(e => e.EdituraId == id);
@@ -210,7 +204,6 @@ namespace localLib.Controllers
                 return NotFound();
             }
 
-            // Check if publisher has associated books
             if (editura.Carti?.Any() == true)
             {
                 TempData["ErrorMessage"] = "Nu se poate șterge editura deoarece are cărți asociate. Mutați mai întâi cărțile la altă editură.";

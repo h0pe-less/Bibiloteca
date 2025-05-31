@@ -7,7 +7,7 @@ using FluentValidation;
 
 namespace localLib.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     [Route("Admin/[controller]")]
     public class AutoriController : Controller
     {
@@ -41,17 +41,14 @@ namespace localLib.Controllers
             var autori = from a in _context.Autori.Include(a => a.CartiAutor)
                          select a;
 
-            // Get total count for display
             ViewBag.TotalCount = await autori.CountAsync();
 
-            // Search functionality
             if (!String.IsNullOrEmpty(searchString))
             {
                 autori = autori.Where(a => a.NumePrenume.Contains(searchString)
                                      || a.Biografie.Contains(searchString));
             }
 
-            // Sorting
             switch (sortOrder)
             {
                 case "nume_desc":
@@ -82,7 +79,6 @@ namespace localLib.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("AutorId,NumePrenume,Biografie,DataNasterii")] Autor autor)
         {
-            // Use FluentValidation
             var validationResult = await _validator.ValidateAsync(autor);
             
             if (!validationResult.IsValid)
@@ -156,7 +152,6 @@ namespace localLib.Controllers
                 return NotFound();
             }
 
-            // Use FluentValidation
             var validationResult = await _validator.ValidateAsync(autor);
             
             if (!validationResult.IsValid)
@@ -189,7 +184,6 @@ namespace localLib.Controllers
                 return RedirectToAction(nameof(Details), new { id = autor.AutorId });
             }
 
-            // Reload related data if validation fails
             autor = await _context.Autori
                 .Include(a => a.CartiAutor)
                 .ThenInclude(ca => ca.Carte)
@@ -211,7 +205,6 @@ namespace localLib.Controllers
                 return NotFound();
             }
 
-            // Check if author has associated books
             if (autor.CartiAutor?.Any() == true)
             {
                 TempData["ErrorMessage"] = "Nu se poate șterge autorul deoarece are cărți asociate. Ștergeți mai întâi cărțile.";
