@@ -35,13 +35,10 @@ window.addEventListener('DOMContentLoaded', () => {
     animateCounter('topics-counter', 89);
 });
 
-// showing selected authors
 $(document).ready(function () {
-    // Initialize arrays to track selections
     const selectedAuthors = [];
     const selectedCategories = [];
 
-    // Load any existing selections (for validation failures)
     const initialAuthors = $('#selectedAuthorIds').val();
     const initialCategories = $('#selectedCategoryIds').val();
 
@@ -69,7 +66,6 @@ $(document).ready(function () {
         });
     }
 
-    // Author functions
     $('#addAuthorBtn').click(function () {
         const comboBox = $('#authorComboBox');
         const authorId = comboBox.val();

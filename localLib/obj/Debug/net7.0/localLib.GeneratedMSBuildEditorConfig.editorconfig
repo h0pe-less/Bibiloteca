@@ -9,161 +9,161 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = localLib
 build_property.RootNamespace = localLib
-build_property.ProjectDir = D:\Diploma\Bibiloteca\Bibiloteca\localLib\
+build_property.ProjectDir = D:\Repos\Bibiloteca\localLib\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = D:\Diploma\Bibiloteca\Bibiloteca\localLib
+build_property.MSBuildProjectDirectory = D:\Repos\Bibiloteca\localLib
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 7.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Account/AccessDenied.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Account/Login.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Autori/Create.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Autori/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b3JpXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Autori/Details.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Autori/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b3JpXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Autori/Edit.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Autori/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b3JpXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Autori/Index.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Autori/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0b3JpXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Book/Create.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Book/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Book/Delete.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Book/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Book/Details.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Book/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Book/Edit.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Book/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Book/Index.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Book/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Categorii/Create.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Categorii/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlpXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Categorii/Details.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Categorii/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlpXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Categorii/Edit.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Categorii/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlpXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Categorii/Index.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Categorii/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlpXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Edituri/Create.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Edituri/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdHVyaVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Edituri/Details.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Edituri/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdHVyaVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Edituri/Edit.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Edituri/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdHVyaVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Edituri/Index.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Edituri/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRWRpdHVyaVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Home/Admin.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Home/Admin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZG1pbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Home/Index.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Home/Privacy.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Home/Search.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Home/Search.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZWFyY2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Imprumuturi/Create.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Imprumuturi/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcnVtdXR1cmlcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Imprumuturi/Details.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Imprumuturi/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcnVtdXR1cmlcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Imprumuturi/Edit.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Imprumuturi/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcnVtdXR1cmlcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Imprumuturi/Index.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Imprumuturi/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW1wcnVtdXR1cmlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Shared/Error.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Shared/_AdminLayout.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Shared/_AdminLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/ZoneColectie/Create.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/ZoneColectie/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWm9uZUNvbGVjdGllXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/ZoneColectie/Details.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/ZoneColectie/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWm9uZUNvbGVjdGllXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/ZoneColectie/Edit.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/ZoneColectie/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWm9uZUNvbGVjdGllXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/ZoneColectie/Index.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/ZoneColectie/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWm9uZUNvbGVjdGllXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/_ViewImports.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/_ViewStart.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Diploma/Bibiloteca/Bibiloteca/localLib/Views/Shared/_Layout.cshtml]
+[D:/Repos/Bibiloteca/localLib/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-fqn7hy30av

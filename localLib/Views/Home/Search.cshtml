@@ -1,4 +1,5 @@
-﻿
+﻿@model PaginatedList<localLib.Models.Carte>
+
 @{
     ViewData["Title"] = "Search";
 }
@@ -7,65 +8,96 @@
 
 <div class="main-container">
     <div class="search-bar">
-        <div class="search-container">
-            <input type="text" placeholder="Search for books...">
-            <button class="search-button">
-                <img src="https://cdn-icons-png.flaticon.com/512/149/149852.png" alt="Search">
-            </button>
-        </div>
+        <form asp-action="Search" method="get">
+            <div class="search-container">
+                <input type="text" name="searchQuery"
+                       value="@ViewBag.SearchQuery"
+                       placeholder="Search for books by title, author...">
+                <button type="submit" class="search-button">
+                    <img src="https://cdn-icons-png.flaticon.com/512/149/149852.png" alt="Search">
+                </button>
+            </div>
+        </form>
     </div>
 
     <div class="search-tooltip">
-        <h1 onclick="clearFilters()">Clear filters</h1>
-        <div class="pagination-info">Showing 10 of 100</div>
+        <h1>
+            <a asp-action="Search" class="clear-link">Clear filters</a>
+        </h1>
+        <div class="pagination-info">
+            Showing @Model.Count of @ViewBag.TotalCount
+            @if (!string.IsNullOrEmpty(ViewBag.SearchQuery))
+            {
+                <span> for "@ViewBag.SearchQuery"</span>
+            }
+        </div>
         <div class="sort-options">
             <span>Sort by:</span>
-            <select>
-                <option>Relevance</option>
-                <option>Newest</option>
-                <option>Oldest</option>
-                <option>Title A-Z</option>
-                <option>Title Z-A</option>
-            </select>
+            <form asp-action="Search" method="get" id="sortForm">
+                <input type="hidden" name="searchQuery" value="@ViewBag.SearchQuery" />
+                <select name="sortBy" onchange="this.form.submit()">
+                    <option value="Relevanta" selected="@(ViewBag.SortBy == "Relevanta")">Relevance</option>
+                    <option value="Cele mai noi" selected="@(ViewBag.SortBy == "Cele mai noi")">Newest</option>
+                    <option value="Cele mai vechi" selected="@(ViewBag.SortBy == "Cele mai vechi")">Oldest</option>
+                    <option value="Titlu A-Z" selected="@(ViewBag.SortBy == "Titlu A-Z")">Title A-Z</option>
+                    <option value="Titlu Z-A" selected="@(ViewBag.SortBy == "Titlu Z-A")">Title Z-A</option>
+                </select>
+            </form>
         </div>
     </div>
 
     <div class="search-results">
         <div class="book-grid">
-            <!--book-card cherez foreach kakoi to ebnuti-->
-            <div class="book-card">
-                <div class="book-cover">
-                    <img src="/images/libanimation.jpg" alt="Book cover">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var carte in Model)
+                {
+                    <div class="book-card">
+                        <div class="book-cover">
+                            <img src="@(string.IsNullOrEmpty(carte.CopertaURL) ? "/images/libanimation.jpg" : carte.CopertaURL)"
+                                 alt="Pagina de titlu @carte.Titlu">
+                        </div>
+                        <div class="book-details">
+                            <h3 class="book-title">@carte.Titlu</h3>
+                            <p class="book-authors">
+                                @{
+                                    var authors = carte.Autori?
+                                    .Where(ca => ca?.Autor != null)
+                                    .Select(ca => ca.Autor.NumePrenume)
+                                    .Where(name => !string.IsNullOrEmpty(name));
+
+                                    if (authors?.Any() == true)
+                                    {
+                                        <text>Autori: @string.Join(", ", authors)</text>
+                                    }
+                                    else
+                                    {
+                                        <text>Autor: Necunoscut</text>
+                                    }
+                                }
+                            </p>
+                            <p class="book-summary">
+                                @(string.IsNullOrEmpty(carte.Descriere) ? "Nu are descriere" :
+                                    (carte.Descriere.Length > 150 ? carte.Descriere.Substring(0, 150) + "..." : carte.Descriere))
+                            </p>
+                            <p class="book-publisher">
+                                Editura: @(carte.Editura?.Denumire ?? "Necunoscut")
+                            </p>
+                            <p class="book-year">
+                                Data publicarii: @(carte.DataPublicarii.Year.ToString() ?? "An necunoscut")
+                            </p>
+                            <a asp-action="Details" asp-route-id="@carte.CarteId" class="details-link">Click pentru mai multe detalii</a>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="no-results">
+                    <p>No books found matching your search criteria.</p>
+                    <a asp-action="Index" class="clear-search">Clear search</a>
                 </div>
-                <div class="book-details">
-                    <h3 class="book-title">Hello here is my title</h3>
-                    <p class="book-authors">Authors: Donald Trump, Stanislav Caragheaur</p>
-                    <p class="book-summary">Summary: hehehe hohoho</p>
-                    <p class="book-publisher">Publisher: McGraw-Hill, New York</p>
-                </div>
-            </div>
-            <div class="book-card">
-                <div class="book-cover">
-                    <img src="/images/libanimation.jpg" alt="Book cover">
-                </div>
-                <div class="book-details">
-                    <h3 class="book-title">Hello here is my title</h3>
-                    <p class="book-authors">Authors: Donald Trump, Stanislav Caragheaur</p>
-                    <p class="book-summary">Summary: hehehe hohoho</p>
-                    <p class="book-publisher">Publisher: McGraw-Hill, New York</p>
-                </div>
-            </div>
-            <div class="book-card">
-                <div class="book-cover">
-                    <img src="/images/libanimation.jpg" alt="Book cover">
-                </div>
-                <div class="book-details">
-                    <h3 class="book-title">Hello here is my title</h3>
-                    <p class="book-authors">Authors: Donald Trump, Stanislav Caragheaur</p>
-                    <p class="book-summary">Summary: hehehe hohoho</p>
-                    <p class="book-publisher">Publisher: McGraw-Hill, New York</p>
-                </div>
-            </div>
+            }
         </div>
 
         <div class="search-filters">
@@ -90,6 +122,54 @@
         </div>
     </div>
     <div class="pages">
-        <!-- stranichki cherez c# vivesti kak na worldcat -->
+        @if (Model.TotalPages > 1)
+        {
+            <nav class="pagination">
+                @if (Model.HasPreviousPage)
+                {
+                    <a asp-action="Search"
+                       asp-route-searchQuery="@ViewBag.SearchQuery"
+                       asp-route-sortBy="@ViewBag.SortBy"
+                       asp-route-page="@(Model.PageIndex - 1)"
+                       class="page-link">&laquo; Inapoi</a>
+                }
+
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <a asp-action="Search"
+                       asp-route-searchQuery="@ViewBag.SearchQuery"
+                       asp-route-sortBy="@ViewBag.SortBy"
+                       asp-route-page="@i"
+                       class="page-link @(i == Model.PageIndex ? "active" : "")">@i</a>
+                }
+
+                @if (Model.HasNextPage)
+                {
+                    <a asp-action="Search"
+                       asp-route-searchQuery="@ViewBag.SearchQuery"
+                       asp-route-sortBy="@ViewBag.SortBy"
+                       asp-route-page="@(Model.PageIndex + 1)"
+                       class="page-link">Urmatoarea &raquo;</a>
+                }
+            </nav>
+        }
     </div>
+    @section Scripts {
+        <script>
+            document.querySelector('input[name="searchQuery"]')?.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    this.closest('form').submit();
+                }
+            });
+
+            document.querySelectorAll('form').forEach(form => {
+                form.onsubmit = function() {
+                    const pageInput = this.querySelector('input[name="page"]');
+                    if (pageInput) pageInput.value = 1;
+                    return true;
+                };
+            });
+        </script>
+    }
 </div>

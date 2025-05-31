@@ -12243,23 +12243,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hulionardo\\.nuget\\packages\\": {},
+    "C:\\Users\\skill\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Diploma\\Bibiloteca\\Bibiloteca\\localLib\\localLib.csproj",
+      "projectUniqueName": "D:\\Repos\\Bibiloteca\\localLib\\localLib.csproj",
       "projectName": "localLib",
-      "projectPath": "D:\\Diploma\\Bibiloteca\\Bibiloteca\\localLib\\localLib.csproj",
-      "packagesPath": "C:\\Users\\hulionardo\\.nuget\\packages\\",
-      "outputPath": "D:\\Diploma\\Bibiloteca\\Bibiloteca\\localLib\\obj\\",
+      "projectPath": "D:\\Repos\\Bibiloteca\\localLib\\localLib.csproj",
+      "packagesPath": "C:\\Users\\skill\\.nuget\\packages\\",
+      "outputPath": "D:\\Repos\\Bibiloteca\\localLib\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\hulionardo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\skill\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -12287,7 +12287,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net7.0": {
@@ -12361,7 +12361,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
