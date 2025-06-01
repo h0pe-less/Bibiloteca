@@ -18,7 +18,6 @@ namespace localLib.Data
         public DbSet<Limba> Limbi { get; set; }
         public DbSet<Tara> Tari { get; set; }
         public DbSet<Autor> Autori { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<Carte> Carti { get; set; }
         public DbSet<CarteAutor> CartiAutori { get; set; }
         public DbSet<CarteCategorie> CartiCategorii { get; set; }
@@ -63,10 +62,6 @@ namespace localLib.Data
             modelBuilder.Entity<Carte>()
                 .Property(c => c.Pret)
                 .HasColumnType("decimal(18,2)");
-
-            modelBuilder.Entity<User>()
-                .Property(u => u.Rol)
-                .HasConversion<string>();
         }
     }
 }

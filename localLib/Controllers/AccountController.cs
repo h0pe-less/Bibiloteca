@@ -52,12 +52,12 @@ namespace localLib.Controllers
                         HttpOnly = true,
                         Secure = Request.IsHttps,
                         SameSite = SameSiteMode.Lax,
-                        Expires = DateTimeOffset.Now.AddHours(1) 
+                        Expires = DateTimeOffset.Now.AddHours(4) 
                     });
                     
                     await _signInManager.SignInAsync(user, isPersistent: true);
                     
-                    return RedirectToLocal(returnUrl ?? "/Admin/Index");
+                    return RedirectToLocal(returnUrl ?? "/Admin");
                 }
                 
                 ModelState.AddModelError(string.Empty, "Încercare de autentificare invalidă.");

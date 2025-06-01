@@ -12,7 +12,7 @@
     <div class="col-md-6">
         <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
+
             <div class="card mb-3">
                 <div class="card-header">Informații Student</div>
                 <div class="card-body">
@@ -46,11 +46,13 @@
                     </div>
                     <div class="form-group mb-3">
                         <label asp-for="DataImprumut" class="control-label"></label>
-                        <input asp-for="DataImprumut" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                        <input asp-for="DataImprumut" class="form-control" type="date"
+                            value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                         <span asp-validation-for="DataImprumut" class="text-danger"></span>
                     </div>
                     <div class="alert alert-info">
-                        <small><i class="fas fa-info-circle"></i> Data returnării va fi setată când cartea este returnată.</small>
+                        <small><i class="fas fa-info-circle"></i> Data returnării va fi setată când cartea este
+                            returnată.</small>
                     </div>
                 </div>
             </div>
@@ -61,8 +63,30 @@
             </div>
         </form>
     </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>Ghid completare</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-user text-info"></i> <strong>Nume:</strong> Introduceți numele complet al studentului</li>
+                    <li><i class="fas fa-user text-info"></i> <strong>Prenume:</strong> Introduceți prenumele complet al studentului</li>
+                    <li><i class="fas fa-users text-info"></i> <strong>Grupa:</strong> Specificați grupa studentului (ex: CTI-1, IS-2)</li>
+                    <li><i class="fas fa-book text-info"></i> <strong>Carte:</strong> Selectați cartea care va fi împrumutată</li>
+                    <li><i class="fas fa-calendar text-info"></i> <strong>Data împrumutului:</strong> Selectați data când se face împrumutul</li>
+                </ul>
+                <div class="alert alert-warning mt-3">
+                    <small><i class="fas fa-exclamation-triangle"></i> <strong>Notă:</strong> Data returnării va fi completată automat când studentul returnează cartea.</small>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

@@ -232,36 +232,7 @@ namespace localLib.Data
             {
                 context.CartiCategorii.Add(cc);
             }
-            context.SaveChanges();
-
-            var users = new User[]
-            {
-                new User{
-                    NumeUtilizator="admin",
-                    Email="admin@biblioteca.ro",
-                    Parola="parola123",
-                    NumePrenume="Administrator Sistem",
-                    Rol=Rol.Administrator
-                },
-                new User{
-                    NumeUtilizator="bibliotecar",
-                    Email="bibliotecar@biblioteca.ro",
-                    Parola="parola123",
-                    NumePrenume="Ion Popescu",
-                    Rol=Rol.Bibliotecar
-                },
-                new User{
-                    NumeUtilizator="cititor",
-                    Email="cititor@biblioteca.ro",
-                    Parola="parola123",
-                    NumePrenume="Maria Ionescu",
-                    Rol=Rol.Cititor
-                }
-            };
-            foreach (User u in users)
-            {
-                context.Users.Add(u);
-            }
+            
             context.SaveChanges();
         }
     }

@@ -303,7 +303,7 @@ public class BookController : Controller
         return _context.Carti.Any(e => e.CarteId == id);
     }
 
-    [HttpGet("Details/{id}")]
+    [HttpGet("Delete/{id}")]
     public async Task<IActionResult> Delete(long? id)
     {
         if (id == null)
